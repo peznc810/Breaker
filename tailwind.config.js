@@ -12,7 +12,14 @@ export default {
       'lg': '1024px',
       'xl': '1280px',
     },
-    extend: {},
+    extend: {
+      colors: {
+        'primary': '#5047E5',
+        'light': '#F8F9FA',
+        'dark': '#010409',
+        'dark-light': '#0d1117',
+      }
+    },
   },
   plugins: [],
 }
