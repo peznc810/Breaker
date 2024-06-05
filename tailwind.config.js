@@ -14,10 +14,8 @@ export default {
     },
     extend: {
       colors: {
-        'primary': '#5047E5',
+        'primary': '#363d4d',
         'light': '#F8F9FA',
-        'dark': '#010409',
-        'dark-light': '#0d1117',
       }
     },
   },
