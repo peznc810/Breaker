@@ -17,7 +17,7 @@
               <li v-for="menu in menus" :key="menu.name">
                 <RouterLink
                   class="inline-block w-full border-b px-4 py-2 hover:bg-gray-100/60"
-                  href="#"
+                  :to="menu.path"
                   >{{ menu.name }}</RouterLink
                 >
               </li>
@@ -33,6 +33,7 @@
 import { RouterLink } from 'vue-router'
 import { reactive } from 'vue'
 
+// TODO: 新增 path 路徑檔案
 const menus = reactive([
   { name: '個人資料', path: '/profile', icon: '' },
   { name: '更改密碼', path: '/changePassword', icon: '' },
