@@ -1,10 +1,14 @@
 import { createI18n } from 'vue-i18n'
 import zh from './locales/zh'
 import en from './locales/en'
+import zhRouter from './locales/zh-router'
+import enRouter from './locales/en-router'
 
 const messages = {
   zh,
-  en
+  en,
+  zhRouter,
+  enRouter
 }
 
 const i18n = createI18n({
