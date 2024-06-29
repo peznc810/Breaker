@@ -1,5 +1,5 @@
 <template>
-  <aside class="absolute bottom-0 left-0 top-0 z-10 w-60 bg-gray-700 text-white">
+  <aside class="fixed bottom-0 left-0 top-0 z-10 w-60 bg-gray-700 text-white">
     <ul class="absolute bottom-0 top-[50px] w-60 overflow-y-auto">
       <li v-for="menu in menus" :key="menu.name">
         <RouterLink

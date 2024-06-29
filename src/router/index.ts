@@ -18,7 +18,7 @@ const router = createRouter({
           }
         },
         {
-          path: '/orderManagement',
+          path: 'orderManagement',
           component: () => import('../views/OrderManagement/index.vue'),
           name: 'OrderManagement',
           meta: {
@@ -26,17 +26,23 @@ const router = createRouter({
           }
         },
         {
-          path: '/productManagement',
-          name: 'productManagement',
+          path: 'productManagement',
+          name: 'ProductManagement',
           component: () => import('../views/ProductManagement/index.vue')
         },
         {
-          path: '/report',
-          name: 'report',
+          path: 'report',
+          name: 'Report',
           component: () => import('../views/ReportView/index.vue')
         },
       ]
     },
+    {
+      path: '/:pathMath(.*)*',
+      name: 'NotFound',
+      redirect: '/dashboard',
+      // component: () => import('@/views/404.vue')
+    }
   ]
 })
 

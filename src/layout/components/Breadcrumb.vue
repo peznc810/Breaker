@@ -1,9 +1,15 @@
 <template>
   <div class="breadcrumb border-b bg-white px-4 py-3 shadow-sm">
-    我未來會是麵包屑
+    {{ routeName }}
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
+
+const route = useRoute()
+const routeName = computed(() => route.name)
+</script>
 
 <style scoped></style>

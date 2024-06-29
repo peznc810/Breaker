@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <div>home</div>
-    <p>{{ $t('hello') }}</p>
-  </div>
+  <div>404 Page</div>
 </template>
 
 <script setup></script>
