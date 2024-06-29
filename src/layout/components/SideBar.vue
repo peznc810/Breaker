@@ -9,7 +9,6 @@
           >{{ menu.name }}</RouterLink
         >
       </li>
-      <!-- <li >mfkdslf</li> -->
     </ul>
   </aside>
 </template>
