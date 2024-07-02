@@ -5,10 +5,14 @@ import zhRouter from './locales/zh-router'
 import enRouter from './locales/en-router'
 
 const messages = {
-  zh,
-  en,
-  zhRouter,
-  enRouter
+  zh: {
+    ...zh,
+    ...zhRouter,
+  },
+  en: {
+    ...en,
+    ...enRouter,
+  },
 }
 
 const i18n = createI18n({
@@ -18,4 +22,5 @@ const i18n = createI18n({
   messages
 })
 
+export const t = i18n.global.t
 export default i18n

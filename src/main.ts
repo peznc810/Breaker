@@ -10,12 +10,12 @@ import i18n from './i18n'
 import './assets/main.css'
 // oh-vue-icons
 import { OhVueIcon, addIcons } from "oh-vue-icons";
-import { HiChevronDown } from "oh-vue-icons/icons";
-
-addIcons(HiChevronDown);
+import { ohIcon } from './plugins/ohIcon'
+addIcons(...ohIcon);
 
 const app = createApp(App)
 
+// TODO: refactor plugins
 app.directive('svg', vSvg) // custom directives
 app.use(createPinia())
 app.use(router)
