@@ -4,7 +4,6 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import VueDevTools from 'vite-plugin-vue-devtools'
-// import vueI18n from '@intlify/vite-plugin-vue-i18n';
 
 // 獲取路徑名的兩種寫法
 /** 第一種（較具靈活性）
