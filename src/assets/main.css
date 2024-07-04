@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.button-group {
+  display: inline-flex;
+  @apply overflow-hidden rounded-md bg-white text-sm font-medium shadow-md;
+}
+
+.button-group > button {
+  @apply rounded-none shadow-none border-r last:border-none;
+}

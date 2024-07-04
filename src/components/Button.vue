@@ -16,7 +16,7 @@
 <template>
   <button
     type="button"
-    class="ml-6 rounded-md bg-white px-3 py-2 text-sm font-medium shadow-md"
+    class="rounded-md bg-white px-3 py-2 text-sm font-medium shadow-md"
     :class="[!isLoading && props.class, !isLoading && 'hover:cursor-pointer']"
     :disabled="props.loading"
     @click="handleClick"

@@ -60,7 +60,7 @@
       <v-icon
         name="hi-chevron-down"
         scale="0.8"
-        :class="{ 'group-focus:rotate-180': isClick }"
+        :class="{ 'group-focus:-rotate-180': isClick }"
         class="origin-center transition-transform duration-300 group-hover:text-blue-500"
         @click.stop="toggleMenu"
       />
