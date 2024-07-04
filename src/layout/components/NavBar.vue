@@ -9,9 +9,9 @@
 
   // data // TODO: 新增 path 路徑檔案
   const menus = reactive([
-    { name: t('profile'), path: '/profile' },
-    { name: t('changePassword'), path: '/changePassword' },
-    { name: t('logout'), path: '/logout' },
+    { name: t('nav.profile'), path: '/profile' },
+    { name: t('nav.changePassword'), path: '/changePassword' },
+    { name: t('nav.logout'), path: '/logout' },
   ])
 
   const langMenu = reactive([
