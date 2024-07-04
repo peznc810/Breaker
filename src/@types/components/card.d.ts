@@ -1,4 +1,4 @@
-interface CardItem {
+export interface CardItem {
   title: string
   icon?: string
   count: number
