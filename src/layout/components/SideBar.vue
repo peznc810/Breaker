@@ -6,25 +6,30 @@
           :to="menu.path"
           active-class="bg-gray-600 shadow-sm"
           class="inline-block w-full px-4 py-3 hover:bg-gray-600"
-          >{{ menu.name }}</RouterLink
         >
+          <v-icon :name="menu.icon" scale="1" />
+          {{ menu.name }}
+        </RouterLink>
       </li>
     </ul>
   </aside>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, computed } from 'vue'
-import { RouterLink, useRoute } from 'vue-router'
+  import { t } from '@/i18n'
+  import { reactive, ref, computed } from 'vue'
+  import { RouterLink, useRoute } from 'vue-router'
 
-const route = useRoute()
+  const route = useRoute()
 
-const menus = reactive([
-  { name: '總覽', path: '/dashboard', icon: '' },
-  { name: '訂單管理', path: '/orderManagement', icon: '' },
-  { name: '商品管理', path: '/productManagement', icon: '' },
-  { name: '報表及分析', path: '/report', icon: '' }
-])
+  const menus = computed(() => {
+    return [
+      { name: t('dashboard'), path: '/dashboard', icon: 'bi-grid-1x2' },
+      { name: t('orderManagement'), path: '/orderManagement', icon: 'hi-clipboard-list' },
+      { name: t('productManagement'), path: '/productManagement', icon: 'la-shopping-bag-solid' },
+      { name: t('report'), path: '/report', icon: 'la-user-solid' },
+    ]
+  })
 </script>
 
 <style scoped></style>
