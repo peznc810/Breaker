@@ -1,3 +1,75 @@
+<script lang="ts" setup>
+  import { RouterLink } from 'vue-router'
+  import { ref, reactive, onMounted, onUnmounted } from 'vue'
+  import { useI18n } from 'vue-i18n'
+  import { t } from '@/i18n'
+
+  // declare
+  const { locale } = useI18n()
+
+  // data // TODO: 新增 path 路徑檔案
+  const menus = reactive([
+    { name: t('profile'), path: '/profile' },
+    { name: t('changePassword'), path: '/changePassword' },
+    { name: t('logout'), path: '/logout' },
+  ])
+
+  const langMenu = reactive([
+    { name: '繁體中文', value: 'zh' },
+    { name: 'English', value: 'en' },
+  ])
+
+  // TODO: 點擊列表以外的地方關閉下拉選單
+  const showUserMenu = ref(false)
+  const showLangMenu = ref(false)
+  const userBtn = ref<HTMLElement | null>(null)
+  const langBtn = ref<HTMLElement | null>(null)
+
+  // methods
+  const toggleLang = (value: string) => {
+    locale.value = value
+  }
+
+  // 使用者選單開關
+  const toggleShowUserMenu = () => {
+    showUserMenu.value = !showUserMenu.value
+    if (showLangMenu.value) {
+      showLangMenu.value = false
+    }
+  }
+
+  // 語言選單開關
+  const toggleShowLangMenu = () => {
+    showLangMenu.value = !showLangMenu.value
+    if (showUserMenu.value) {
+      showUserMenu.value = false
+    }
+  }
+
+  // 點擊選單外部則關閉選單
+  const handleWindowClick = (e: Event) => {
+    const target = e.target as HTMLElement
+
+    const isUserMenuOutside = showUserMenu.value && userBtn.value && !userBtn.value.contains(target)
+    const isLangMenuOutside = showLangMenu.value && langBtn.value && !langBtn.value.contains(target)
+
+    if (isUserMenuOutside) {
+      showUserMenu.value = false
+    } else if (isLangMenuOutside) {
+      showLangMenu.value = false
+    }
+  }
+
+  // lifecycle
+  onMounted(() => {
+    document.addEventListener('click', handleWindowClick)
+  })
+
+  onUnmounted(() => {
+    document.addEventListener('click', handleWindowClick)
+  })
+</script>
+
 <template>
   <header class="fixed top-0 z-20 h-[50px] w-full shadow-md">
     <div class="flex h-full justify-between">
@@ -31,7 +103,7 @@
           <div class="relative">
             <!-- User Btn -->
             <button type="button" ref="userBtn" @click="toggleShowUserMenu">
-              <span>你好，RubyChen</span>
+              <span>{{ t('hello') }}，RubyChen</span>
               <v-icon name="hi-chevron-down" scale="0.8" />
             </button>
             <!-- 下拉選單 -->
@@ -56,85 +128,14 @@
   </header>
 </template>
 
-<script lang="ts" setup>
-import { RouterLink } from 'vue-router'
-import { ref, reactive, onMounted, onUnmounted } from 'vue'
-import { useI18n } from 'vue-i18n'
-
-// declare
-const { locale } = useI18n()
-
-// data // TODO: 新增 path 路徑檔案
-const menus = reactive([
-  { name: '個人資料', path: '/profile' },
-  { name: '更改密碼', path: '/changePassword' },
-  { name: '登出', path: '/logout' }
-])
-
-const langMenu = reactive([
-  { name: '繁體中文', value: 'zh' },
-  { name: 'English', value: 'en' }
-])
-
-// TODO: 點擊列表以外的地方關閉下拉選單
-const showUserMenu = ref(false)
-const showLangMenu = ref(false)
-const userBtn = ref<HTMLElement | null>(null)
-const langBtn = ref<HTMLElement | null>(null)
-
-// methods
-const toggleLang = (value: string) => {
-  locale.value = value
-}
-
-// 使用者選單開關
-const toggleShowUserMenu = () => {
-  showUserMenu.value = !showUserMenu.value
-  if (showLangMenu.value) {
-    showLangMenu.value = false
-  }
-}
-
-// 語言選單開關
-const toggleShowLangMenu = () => {
-  showLangMenu.value = !showLangMenu.value
-  if (showUserMenu.value) {
-    showUserMenu.value = false
-  }
-}
-
-// 點擊選單外部則關閉選單
-const handleWindowClick = (e: Event) => {
-  const target = e.target as HTMLElement
-
-  const isUserMenuOutside = showUserMenu.value && userBtn.value && !userBtn.value.contains(target)
-  const isLangMenuOutside = showLangMenu.value && langBtn.value && !langBtn.value.contains(target)
-
-  if (isUserMenuOutside) {
-    showUserMenu.value = false
-  } else if (isLangMenuOutside) {
-    showLangMenu.value = false
-  }
-}
-
-// lifecycle
-onMounted(() => {
-  document.addEventListener('click', handleWindowClick)
-})
-
-onUnmounted(() => {
-  document.addEventListener('click', handleWindowClick)
-})
-</script>
-
 <style scoped>
-.slide-fade-enter-active,
-.slide-fade-leave-active {
-  transition: all 0.3s ease-out;
-}
+  .slide-fade-enter-active,
+  .slide-fade-leave-active {
+    transition: all 0.3s ease-out;
+  }
 
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  opacity: 0;
-}
+  .slide-fade-enter-from,
+  .slide-fade-leave-to {
+    opacity: 0;
+  }
 </style>
