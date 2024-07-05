@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-  import type { TableProps } from '@/@types/components/table'
+  import { computed } from 'vue'
+  import type { Columns, TableProps } from '@/@types/components/table'
+  import { thousandsSeparator } from '@/utils/mixin'
 
   const props = defineProps<TableProps>()
 
-  // TODO: 擴充表格的使用彈性
-  /**
-   * @param minWidth: number
-   * @param width: number
-   * @param fixed: 'left' | 'right'
-   * @param prop: string
-   */
+  // 客製化的欄位寬度
+  const columnWidth = (column: Columns) => {
+    if (!column.width) return
+    return `width: ${column.width}px;`
+  }
 </script>
 
 <template>
@@ -17,17 +17,55 @@
     <table class="el-table">
       <thead class="el-table__header">
         <tr>
-          <th class="el-table__column--index"></th>
-          <th v-for="column in props.columns" :key="column.prop" class="el-table__column--sortable">
-            {{ column.label }}
+          <!-- 第一列的樣式 -->
+          <!-- 序號 -->
+          <th v-if="props.type === 'index'" class="el-table__column--index w-20">
+            <slot name="index-head" />
           </th>
+          <!-- 多選框 -->
+          <th v-else-if="props.type === 'checkbox'" class="el-table__column--checkbox w-20">
+            <input type="checkbox" />
+          </th>
+          <!-- 第一列之後的樣式（可自定義） -->
+          <slot name="table-head">
+            <th
+              v-for="column in props.columns"
+              :key="column.prop"
+              class="el-table__column--sortable"
+              :style="columnWidth(column)"
+            >
+              {{ column.label }}
+            </th>
+          </slot>
         </tr>
       </thead>
       <tbody class="el-table__body">
-        <tr v-for="row in props.data" :key="row.id" class="el-table__row">
-          <td class="el-table__cell">No {{ row.id }}</td>
+        <tr v-for="(row, index) in props.data" :key="row.id" class="el-table__row">
+          <!-- 第一列的樣式(可自定義) -->
+          <!-- 序號 -->
+          <td v-if="props.type === 'index'" class="el-table__cell">
+            <slot name="index-column" :row="row" :index="index">
+              {{ index + 1 }}
+            </slot>
+          </td>
+          <!-- 多選框 -->
+          <td v-else-if="props.type === 'checkbox'" class="el-table__cell">
+            <input type="checkbox" />
+          </td>
+
+          <!-- 第一列之後的樣式(可自定義) -->
           <td v-for="column in props.columns" :key="column.prop" class="el-table__cell">
-            {{ row[column.prop] }}
+            <!-- 例如： title-column -->
+            <slot :name="`${column.prop}-column`" :row="row">
+              <!-- 千分位 -->
+              <template v-if="column.type === 'currency'">
+                {{ thousandsSeparator(row[column.prop]) }}
+              </template>
+              <!-- 預設 -->
+              <template v-else>
+                {{ row[column.prop] }}
+              </template>
+            </slot>
           </td>
         </tr>
       </tbody>
@@ -44,6 +82,7 @@
   }
 
   .el-table {
+    min-width: 450px;
     width: 100%;
     border: 1px solid #ebeef5;
     border-radius: 4px;
@@ -71,12 +110,11 @@
   }
 
   .el-table__cell {
-    padding: 12px;
+    padding: 8px 12px;
     border-bottom: 1px solid #ebeef5;
   }
 
   .el-table__column--index {
-    width: 80px;
     text-align: center;
   }
 </style>
