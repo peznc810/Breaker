@@ -1,8 +1,8 @@
 import { createI18n } from 'vue-i18n'
-import zh from './locales/zh'
-import en from './locales/en'
-import zhRouter from './locales/zh-router'
-import enRouter from './locales/en-router'
+import zh from './zh'
+import en from './en'
+import zhRouter from './zh-router'
+import enRouter from './en-router'
 
 const messages = {
   zh: {

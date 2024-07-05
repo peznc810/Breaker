@@ -16,6 +16,12 @@ export default {
     unpaid: '訂單未付款',
     operationalMsg: '以下是今天商店的營運概況',
     dataEndTime: '資料截至',
+    transactionTotal: '成交總額',
+    totalSales: '總營業額',
+    totalCompletedOrders: '成交訂單總量',
+    storePageViews: '網店瀏覽量',
+    newMembersCount: '新增會員數',
+    totalOrder: '訂單總量',
   },
   moreData: '更多數據',
   select: {
