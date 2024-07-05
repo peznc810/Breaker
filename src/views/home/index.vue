@@ -3,6 +3,7 @@
   import { t } from '@/locales/index'
   import ChartCard from './components/ChartCard.vue'
   import ToDoCard from './components/ToDoCard.vue'
+  import HotCard from './components/HotCard.vue'
   import { useUserStore } from '@/stores/user'
 
   const store = useUserStore()
@@ -35,16 +36,6 @@
       { title: t('overview.totalCompletedOrders'), count: 24 },
       { title: t('overview.storePageViews'), count: 5360 },
       { title: t('overview.newMembersCount'), count: 17 },
-    ]
-  })
-  // 熱門商品
-  const hotList = computed(() => {
-    return [
-      { img: '', title: '商品1', count: 100, viewCount: 20 },
-      { img: '', title: '商品2', count: 200, viewCount: 58 },
-      { img: '', title: '商品3', count: 300, viewCount: 46 },
-      { img: '', title: '商品4', count: 400, viewCount: 10 },
-      { img: '', title: '商品5', count: 500, viewCount: 6 },
     ]
   })
   // 熱門商品
@@ -97,7 +88,7 @@
       </div>
 
       <!-- 熱門商品 -->
-      <el-card :data="hotList"></el-card>
+      <HotCard />
     </div>
   </div>
 </template>
