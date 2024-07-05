@@ -1,10 +1,10 @@
 <template>
-  <aside class="fixed bottom-0 left-0 top-0 z-10 w-60 bg-gray-700 text-white">
+  <aside class="fixed bottom-0 left-0 top-0 z-10 w-60 bg-gray-700 text-slate-200/50">
     <ul class="absolute bottom-0 top-[50px] w-60 overflow-y-auto">
       <li v-for="menu in menus" :key="menu.name">
         <RouterLink
           :to="menu.path"
-          active-class="bg-gray-600 shadow-sm"
+          active-class="bg-gray-600 shadow-sm text-white"
           class="inline-block w-full px-4 py-3 hover:bg-gray-600"
         >
           <v-icon :name="menu.icon" scale="1" />
