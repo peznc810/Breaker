@@ -10,3 +10,7 @@
 .button-group > button {
   @apply rounded-none shadow-none border-r last:border-none;
 }
+
+span {
+  line-height: 2rem;
+}

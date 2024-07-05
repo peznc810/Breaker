@@ -5,6 +5,7 @@ export interface ButtonProps {
   icon?: string
   iconSize?: string | number
   text?: string
+  size?: string
 }
 
 export interface ButtonEmit {
