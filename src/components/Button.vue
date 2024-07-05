@@ -16,8 +16,12 @@
 <template>
   <button
     type="button"
-    class="rounded-md bg-white px-3 py-2 text-sm font-medium shadow-md"
-    :class="[!isLoading && props.class, !isLoading && 'hover:cursor-pointer']"
+    class="rounded-md text-sm font-medium shadow-md"
+    :class="[
+      !isLoading && props.class,
+      !isLoading && 'hover:cursor-pointer',
+      props.size === 'mini' ? 'px-2' : 'px-3',
+    ]"
     :disabled="props.loading"
     @click="handleClick"
   >
