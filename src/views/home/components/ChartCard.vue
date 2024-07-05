@@ -29,9 +29,9 @@
   >
     <!-- Header -->
     <div class="flex items-center justify-between">
-      <div class="text-md font-normal">{{ item.title }}</div>
+      <div class="text-sm font-normal">{{ item.title }}</div>
       <div class="btn">
-        <div v-show="index === 0">
+        <div v-show="index === 0" class="flex flex-nowrap">
           <el-button-group class="ml-6">
             <el-button
               :class="transActive === 1 && 'bg-blue-400 text-white'"
@@ -47,15 +47,17 @@
             >
           </el-button-group>
         </div>
-        <div v-show="index === 1">
+        <div v-show="index === 1" class="flex flex-nowrap">
           <el-button-group class="ml-6">
             <el-button
+              class="text-nowrap"
               :class="totalOrdersActive === 1 && 'bg-blue-400 text-white'"
               @click="handleActive(index, 1)"
               size="mini"
               >{{ $t('overview.totalCompletedOrders') }}</el-button
             >
             <el-button
+              class="text-nowrap"
               :class="totalOrdersActive === 2 && 'bg-blue-400 text-white'"
               @click="handleActive(index, 2)"
               size="mini"

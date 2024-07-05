@@ -1,6 +1,27 @@
+<script setup lang="ts">
+  import { t } from '@/locales/index'
+  import { ref, computed } from 'vue'
+  import { RouterLink } from 'vue-router'
+
+  const props = defineProps({
+    show: Boolean,
+  })
+  const menus = computed(() => {
+    return [
+      { name: t('dashboard'), path: '/dashboard', icon: 'bi-grid-1x2' },
+      { name: t('orderManagement'), path: '/orderManagement', icon: 'hi-clipboard-list' },
+      { name: t('productManagement'), path: '/productManagement', icon: 'la-shopping-bag-solid' },
+      { name: t('report'), path: '/report', icon: 'la-user-solid' },
+    ]
+  })
+</script>
+
 <template>
-  <aside class="fixed bottom-0 left-0 top-0 z-10 w-60 bg-gray-700 text-slate-200/50">
-    <ul class="absolute bottom-0 top-[50px] w-60 overflow-y-auto">
+  <aside
+    class="fixed bottom-0 left-0 top-0 z-10 bg-gray-700 text-slate-200/50 lg:w-60"
+    :class="props.show ? 'w-60' : 'w-0'"
+  >
+    <ul class="absolute bottom-0 top-[50px] w-full overflow-y-auto">
       <li v-for="menu in menus" :key="menu.name">
         <RouterLink
           :to="menu.path"
@@ -14,22 +35,3 @@
     </ul>
   </aside>
 </template>
-
-<script setup lang="ts">
-  import { t } from '@/locales/index'
-  import { reactive, ref, computed } from 'vue'
-  import { RouterLink, useRoute } from 'vue-router'
-
-  const route = useRoute()
-
-  const menus = computed(() => {
-    return [
-      { name: t('dashboard'), path: '/dashboard', icon: 'bi-grid-1x2' },
-      { name: t('orderManagement'), path: '/orderManagement', icon: 'hi-clipboard-list' },
-      { name: t('productManagement'), path: '/productManagement', icon: 'la-shopping-bag-solid' },
-      { name: t('report'), path: '/report', icon: 'la-user-solid' },
-    ]
-  })
-</script>
-
-<style scoped></style>
