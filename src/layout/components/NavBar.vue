@@ -3,9 +3,11 @@
   import { ref, reactive, onMounted, onUnmounted } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { t } from '@/locales/index'
+  import { useUserStore } from '@/stores/user'
 
   // declare
   const { locale } = useI18n()
+  const store = useUserStore()
 
   // data // TODO: 新增 path 路徑檔案
   const menus = reactive([
@@ -103,7 +105,7 @@
           <div class="relative">
             <!-- User Btn -->
             <button type="button" ref="userBtn" @click="toggleShowUserMenu">
-              <span>{{ t('hello') }}，RubyChen</span>
+              <span>{{ t('hello') }}，{{ store.user?.username }}</span>
               <v-icon name="hi-chevron-down" scale="0.8" />
             </button>
             <!-- 下拉選單 -->
