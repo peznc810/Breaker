@@ -69,11 +69,11 @@
               {{ `${t('overview.dataEndTime')} ${t('am')}11:00` }}
             </div>
           </div>
-          <div class="btn-group">
+          <div class="space-x-6">
             <el-select :data="sortList" />
             <el-button
               icon="fc-combo-chart"
-              class="ml-6 transition-colors duration-200 hover:text-blue-500"
+              class="transition-colors duration-200 hover:text-blue-500"
               :loading="isLoading"
               @click="handleClick"
             >
