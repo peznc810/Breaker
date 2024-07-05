@@ -13,14 +13,16 @@
 
 <template>
   <div class="flex items-center justify-center gap-4">
-    <el-card :data="cardList" class="hover:cursor-pointer hover:shadow-lg hover:shadow-black/10">
-      <template #default="{ row }">
-        <div class="flex h-full flex-col items-center justify-center gap-5">
-          <v-icon :name="row.icon" scale="1.3" class="text-blue-400" />
-          <div class="text-xl font-medium">{{ row.count }}</div>
-          <div>{{ row.title }}</div>
-        </div>
-      </template>
+    <el-card
+      v-for="(item, index) in cardList"
+      :key="index"
+      class="hover:cursor-pointer hover:shadow-lg hover:shadow-black/10"
+    >
+      <div class="flex h-full flex-col items-center justify-center gap-5">
+        <v-icon :name="item.icon" scale="1.3" class="text-blue-400" />
+        <div class="text-xl font-medium">{{ item.count }}</div>
+        <div>{{ item.title }}</div>
+      </div>
     </el-card>
   </div>
 </template>
