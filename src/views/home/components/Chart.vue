@@ -8,7 +8,7 @@
     const date = new Date()
     const hour = date.getHours()
 
-    const labels = []
+    const labels = ['00:00']
 
     for (let i = 1; i < hour; i += 2) {
       const label = `${i.toString().padStart(2, '0')}:00`

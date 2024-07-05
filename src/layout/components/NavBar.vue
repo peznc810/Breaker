@@ -5,6 +5,11 @@
   import { t } from '@/locales/index'
   import { useUserStore } from '@/stores/user'
 
+  const props = defineProps({
+    show: Boolean,
+  })
+  const emit = defineEmits(['click'])
+
   // declare
   const { locale } = useI18n()
   const store = useUserStore()
@@ -31,7 +36,6 @@
   const toggleLang = (value: string) => {
     locale.value = value
   }
-
   // 使用者選單開關
   const toggleShowUserMenu = () => {
     showUserMenu.value = !showUserMenu.value
@@ -39,7 +43,6 @@
       showLangMenu.value = false
     }
   }
-
   // 語言選單開關
   const toggleShowLangMenu = () => {
     showLangMenu.value = !showLangMenu.value
@@ -47,7 +50,6 @@
       showUserMenu.value = false
     }
   }
-
   // 點擊選單外部則關閉選單
   const handleWindowClick = (e: Event) => {
     const target = e.target as HTMLElement
@@ -75,8 +77,22 @@
 <template>
   <header class="fixed top-0 z-20 h-[50px] w-full shadow-md">
     <div class="flex h-full justify-between">
-      <div class="grid h-[50px] w-60 place-content-center border-b bg-primary text-white">
-        <div class="flex-shrink-0">IF SHOP</div>
+      <div
+        class="grid h-[50px] place-content-center border-b bg-primary text-white hover:cursor-pointer lg:w-60"
+        :class="props.show ? 'w-60' : 'w-0'"
+      >
+        <div class="flex-shrink-0">
+          <span class="lg:block" :class="props.show ? 'block' : 'hidden'">IF SHOP</span>
+        </div>
+      </div>
+      <div
+        class="grid h-[50px] w-10 place-content-center border-b bg-primary text-white hover:cursor-pointer lg:hidden"
+        :class="props.show && 'border-l'"
+        @click="emit('click')"
+      >
+        <div class="flex-shrink-0">
+          <v-icon name="bi-list" class="block lg:hidden" scale="1.2" />
+        </div>
       </div>
       <nav class="flex-1 bg-white px-5">
         <div class="flex h-full items-center justify-end">

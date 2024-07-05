@@ -8,6 +8,12 @@
 
   const store = useUserStore()
   const isLoading = ref(false)
+  const now = computed(() => {
+    const hour = new Date().getHours()
+    const minute = new Date().getMinutes()
+
+    return `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`
+  })
 
   // 問候語
   const greet = computed(() => {
@@ -51,7 +57,7 @@
 </script>
 
 <template>
-  <div class="container py-6">
+  <div class="p-6">
     <div class="flex flex-col gap-5">
       <div class="mb-4 text-2xl font-bold">
         <!-- 目前會空白狀態，需等登入系統完成 -->
@@ -66,7 +72,7 @@
           <div class="text-slate-700/80">
             <div>{{ t('overview.operationalMsg') }}</div>
             <div class="text-xs">
-              {{ `${t('overview.dataEndTime')} ${t('am')}11:00` }}
+              {{ `${t('overview.dataEndTime')} ${t('am')}${now}` }}
             </div>
           </div>
           <div class="space-x-6">

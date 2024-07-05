@@ -10,6 +10,7 @@ import {
   FcComboChart,
   RiLoader2Fill,
   RiShareBoxLine,
+  BiList,
 } from 'oh-vue-icons/icons'
 
 export const ohIcon = [
@@ -24,4 +25,5 @@ export const ohIcon = [
   FcComboChart, // 數據
   RiLoader2Fill, // loading
   RiShareBoxLine, // 開分頁
+  BiList, // 列表
 ]
