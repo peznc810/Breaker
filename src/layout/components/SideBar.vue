@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-  import { t } from '@/i18n'
+  import { t } from '@/locales/index'
   import { reactive, ref, computed } from 'vue'
   import { RouterLink, useRoute } from 'vue-router'
 
