@@ -22,6 +22,7 @@ export default {
     storePageViews: '網店瀏覽量',
     newMembersCount: '新增會員數',
     totalOrder: '訂單總量',
+    hotProducts: '熱門商品',
   },
   moreData: '更多數據',
   select: {
