@@ -2,6 +2,7 @@
   import { computed, ref } from 'vue'
   import { t } from '@/locales/index'
   import ChartCard from './components/ChartCard.vue'
+  import ToDoCard from './components/ToDoCard.vue'
   import { useUserStore } from '@/stores/user'
 
   const store = useUserStore()
@@ -27,14 +28,6 @@
       { label: t('select.thirtyDaysBefore'), value: 4 },
     ]
   })
-  // 未處理概況
-  const cardList = computed(() => {
-    return [
-      { title: t('overview.unRead') /** 留言未讀取 */, count: 20, icon: 'ri-message-2-line' },
-      { title: t('overview.unShipped' /** 訂單未出貨 */), count: 1847, icon: 'hi-clipboard-list' },
-      { title: t('overview.unpaid') /** 訂單未付款 */, count: 68, icon: 'bi-credit-card-2-back' },
-    ]
-  })
   // 數據
   const chartList = computed(() => {
     return [
@@ -44,6 +37,17 @@
       { title: t('overview.newMembersCount'), count: 17 },
     ]
   })
+  // 熱門商品
+  const hotList = computed(() => {
+    return [
+      { img: '', title: '商品1', count: 100, viewCount: 20 },
+      { img: '', title: '商品2', count: 200, viewCount: 58 },
+      { img: '', title: '商品3', count: 300, viewCount: 46 },
+      { img: '', title: '商品4', count: 400, viewCount: 10 },
+      { img: '', title: '商品5', count: 500, viewCount: 6 },
+    ]
+  })
+  // 熱門商品
 
   // Methods
   const handleClick = () => {
@@ -62,26 +66,12 @@
         <!-- 目前會空白狀態，需等登入系統完成 -->
         {{ greet }}, {{ store.user?.username || '' }}
       </div>
-      <!-- 未處理概況 -->
-      <div class="flex items-center justify-center gap-4">
-        <el-card
-          :data="cardList"
-          class="hover:cursor-pointer hover:shadow-lg hover:shadow-black/10"
-        >
-          <template #default="{ row }">
-            <div class="flex h-full flex-col items-center justify-center gap-5">
-              <v-icon :name="row.icon" scale="1.3" class="text-blue-400" />
-              <div class="text-xl font-medium">{{ row.count }}</div>
-              <div>{{ row.title }}</div>
-            </div>
-          </template>
-        </el-card>
-      </div>
-
+      <!-- 待辦事項 -->
+      <ToDoCard />
       <!-- 數據 -->
       <div class="analysis">
         <!-- 今日營運概況 -->
-        <div class="mb-4 flex justify-between">
+        <div class="mb-4 flex justify-between pl-2">
           <div class="text-slate-700/80">
             <div>{{ t('overview.operationalMsg') }}</div>
             <div class="text-xs">
@@ -105,6 +95,9 @@
           <ChartCard :data="chartList" />
         </div>
       </div>
+
+      <!-- 熱門商品 -->
+      <el-card :data="hotList"></el-card>
     </div>
   </div>
 </template>

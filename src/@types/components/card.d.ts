@@ -6,6 +6,6 @@ export interface CardItem {
 }
 
 export interface CardProps {
-  data: CardItem[],
-  class?: string
+  data?: CardItem[] // 可以決定是否要渲染多個卡片
+  class?: string 
 }
