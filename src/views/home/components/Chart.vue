@@ -4,22 +4,47 @@
 
   const myChart = ref<ChartItem | null>(null)
 
-  const labels = ['01:00', '03:00', '05:00', '07:00', '09:00', '11:00', '13:00']
+  const getTimeLabel = () => {
+    const date = new Date()
+    const hour = date.getHours()
 
+    const labels = []
+
+    for (let i = 1; i < hour; i += 2) {
+      const label = `${i.toString().padStart(2, '0')}:00`
+
+      if (label) {
+        labels.push(label)
+      }
+    }
+
+    return labels
+  }
+  const labels = getTimeLabel()
+
+  const fakeData = () => {
+    const data = []
+
+    for (let i = 0; i < labels.length; i++) {
+      data.push(Math.ceil(Math.random() * 10000))
+    }
+
+    return data
+  }
   const data = {
     labels,
     datasets: [
       {
         backgroundColor: 'rgb(96, 165, 250)',
         borderColor: 'rgb(96, 165, 250)',
-        data: [1000, 2837, 4829, 9273, 23746, 3289, 1000],
+        data: fakeData(),
         pointRadius: 0, // hover時才顯示點
         tension: 0, // 折角
       },
       {
         backgroundColor: 'rgba(96, 165, 250, 0.5)',
         borderColor: 'rgba(96, 165, 250, 0.5)',
-        data: [1900, 300, 9324, 2400, 1764, 2873, 7327],
+        data: fakeData(),
         pointRadius: 0,
         tension: 0,
       },
@@ -31,6 +56,7 @@
     data: data,
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       interaction: {
         mode: 'index',
         intersect: false,
@@ -81,7 +107,7 @@
 </script>
 
 <template>
-  <div>
-    <canvas ref="myChart" height="30" width="100"></canvas>
+  <div class="w-full">
+    <canvas ref="myChart"></canvas>
   </div>
 </template>

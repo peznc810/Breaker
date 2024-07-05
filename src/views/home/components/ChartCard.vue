@@ -2,6 +2,7 @@
   import { ref } from 'vue'
   import { RouterLink } from 'vue-router'
   import Chart from './Chart.vue'
+  import { thousandsSeparator } from '@/utils/mixin'
 
   const props = defineProps<{
     data: any
@@ -68,7 +69,8 @@
       </div>
     </div>
 
-    <div class="text-lg font-bold">NT$ {{ item.count }}</div>
+    <div v-if="index === 0" class="text-lg font-bold">NT$ {{ thousandsSeparator(item.count) }}</div>
+    <div v-else class="text-lg font-bold">{{ thousandsSeparator(item.count) }}</div>
 
     <!-- Chart -->
     <div class="mt-4">

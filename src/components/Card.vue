@@ -5,7 +5,7 @@
 
 <template>
   <div
-    class="w-full rounded-md bg-white p-4 shadow-md transition-shadow duration-300"
+    class="w-full rounded-md bg-white p-6 shadow-md transition-shadow duration-300"
     :class="props.class"
   >
     <slot />
