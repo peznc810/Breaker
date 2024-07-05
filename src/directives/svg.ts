@@ -1,3 +1,4 @@
+// 測試中...
 import type { DirectiveBinding } from "vue";
 
 export default {

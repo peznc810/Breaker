@@ -13,9 +13,7 @@ import { OhVueIcon, addIcons } from "oh-vue-icons";
 import { ohIcon } from './plugins/ohIcon'
 addIcons(...ohIcon);
 // components
-import Button from '@/components/Button.vue'
-import Select from '@/components/Select.vue'
-import Card from '@/components/Card.vue'
+import { registerComponents} from '@/components/index'
 
 const app = createApp(App)
 
@@ -26,8 +24,6 @@ app.use(router)
 app.use(i18n)
 
 app.component('v-icon', OhVueIcon)
-app.component('el-button', Button)
-app.component('el-select', Select)
-app.component('el-card', Card)
+registerComponents(app)
 
 app.mount('#app')
