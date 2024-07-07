@@ -12,15 +12,18 @@
       {
         label: '',
         prop: 'title',
+        width: '400',
       },
       {
         label: '銷量',
         prop: 'count',
         type: 'currency',
+        width: '200',
       },
       {
         label: '商品瀏覽量',
         prop: 'viewCount',
+        width: '200',
       },
     ]
   })
@@ -31,7 +34,7 @@
         id: 1,
         img: 'https://cdn.pixabay.com/photo/2016/09/11/20/43/truck-butt-1662538_1280.jpg',
         title:
-          '『限時回饋-下單現折50』Gale force s 迷你渦輪扇 ｜保固全面升級一年 渦輪小風扇 暴力風槍 暴力渦輪風',
+          '『限時回饋-下單現折50』Gale force s 迷你活塞 ｜保固全面升級一年 渦輪小風扇 暴力風槍 暴力渦輪風',
         count: 1000,
         viewCount: 20,
       },

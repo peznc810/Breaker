@@ -1,19 +1,25 @@
 <script setup lang="ts">
   import { t } from '@/locales/index'
   import { ref, computed } from 'vue'
-  import { RouterLink } from 'vue-router'
+  import { RouterLink, useRouter } from 'vue-router'
+
+  const router = useRouter()
+  console.log(router.options.routes[0].children)
 
   const props = defineProps({
     show: Boolean,
   })
-  const menus = computed(() => {
-    return [
-      { name: t('dashboard'), path: '/dashboard', icon: 'bi-grid-1x2' },
-      { name: t('orderManagement'), path: '/orderManagement', icon: 'hi-clipboard-list' },
-      { name: t('productManagement'), path: '/productManagement', icon: 'la-shopping-bag-solid' },
-      { name: t('report'), path: '/report', icon: 'la-user-solid' },
-    ]
-  })
+
+  const menus = router.options.routes[0].children
+
+  // const menus = computed(() => {
+  //   return [
+  //     { name: t('dashboard'), path: '/dashboard', icon: 'bi-grid-1x2' },
+  //     { name: t('orderManagement'), path: '/orderManagement', icon: 'hi-clipboard-list' },
+  //     { name: t('productManagement'), path: '/productManagement', icon: 'la-shopping-bag-solid' },
+  //     { name: t('report'), path: '/report', icon: 'la-user-solid' },
+  //   ]
+  // })
 </script>
 
 <template>
@@ -28,7 +34,7 @@
           active-class="bg-gray-600 shadow-sm text-white"
           class="inline-block w-full px-4 py-3 hover:bg-gray-600"
         >
-          <v-icon :name="menu.icon" scale="1" />
+          <v-icon :name="menu.meta && menu.meta.icon" scale="1" />
           {{ menu.name }}
         </RouterLink>
       </li>
