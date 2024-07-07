@@ -4,6 +4,7 @@
 
   const myChart = ref<ChartItem | null>(null)
 
+  // 跟依據當前時間顯示資料
   const getTimeLabel = () => {
     const date = new Date()
     const hour = date.getHours()
