@@ -12,7 +12,8 @@
 </script>
 
 <template>
-  <div class="flex items-center justify-center gap-4">
+  <!-- <div class="flex items-center justify-center gap-4"> -->
+  <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
     <el-card
       v-for="(item, index) in cardList"
       :key="index"

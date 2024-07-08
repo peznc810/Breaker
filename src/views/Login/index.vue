@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <div>login</div>
+  <div>Login</div>
 </template>
 
 <style scoped></style>

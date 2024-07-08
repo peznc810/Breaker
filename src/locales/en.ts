@@ -5,6 +5,7 @@ export default {
   evening: 'Good evening',
   am: 'AM',
   pm: 'PM',
+  language: 'Language',
   nav: {
     profile: 'Profile',
     changePassword: 'Change Password',

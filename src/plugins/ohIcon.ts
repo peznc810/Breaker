@@ -11,6 +11,7 @@ import {
   RiLoader2Fill,
   RiShareBoxLine,
   BiList,
+  HiDotsVertical,
 } from 'oh-vue-icons/icons'
 
 export const ohIcon = [
@@ -26,4 +27,5 @@ export const ohIcon = [
   RiLoader2Fill, // loading
   RiShareBoxLine, // 開分頁
   BiList, // 列表
+  HiDotsVertical,
 ]

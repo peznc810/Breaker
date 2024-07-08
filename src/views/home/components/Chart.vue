@@ -1,51 +1,28 @@
 <script lang="ts" setup>
   import { onMounted, ref } from 'vue'
   import Chart, { type ChartItem, type ChartConfiguration } from 'chart.js/auto'
+  import { useChartStore } from '@/stores/chart'
 
   const myChart = ref<ChartItem | null>(null)
+  const store = useChartStore()
 
   // 跟依據當前時間顯示資料
-  const getTimeLabel = () => {
-    const date = new Date()
-    const hour = date.getHours()
+  const labels = store.getTimeLabel()
 
-    const labels = ['00:00']
-
-    for (let i = 1; i < hour; i += 2) {
-      const label = `${i.toString().padStart(2, '0')}:00`
-
-      if (label) {
-        labels.push(label)
-      }
-    }
-
-    return labels
-  }
-  const labels = getTimeLabel()
-
-  const fakeData = () => {
-    const data = []
-
-    for (let i = 0; i < labels.length; i++) {
-      data.push(Math.ceil(Math.random() * 10000))
-    }
-
-    return data
-  }
   const data = {
     labels,
     datasets: [
       {
         backgroundColor: 'rgb(96, 165, 250)',
         borderColor: 'rgb(96, 165, 250)',
-        data: fakeData(),
+        data: store.fakeData(),
         pointRadius: 0, // hover時才顯示點
         tension: 0, // 折角
       },
       {
         backgroundColor: 'rgba(96, 165, 250, 0.5)',
         borderColor: 'rgba(96, 165, 250, 0.5)',
-        data: fakeData(),
+        data: store.fakeData2(),
         pointRadius: 0,
         tension: 0,
       },

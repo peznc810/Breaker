@@ -1,16 +1,24 @@
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref, computed } from 'vue'
   import { RouterLink } from 'vue-router'
   import Chart from './Chart.vue'
   import { thousandsSeparator } from '@/utils/mixin'
+  import { t } from '@/locales/index'
+  import { useChartStore } from '@/stores/chart'
 
-  const props = defineProps<{
-    data: any
-    class?: string
-  }>()
+  const store = useChartStore()
 
   const transActive = ref(1)
   const totalOrdersActive = ref(1)
+  // 數據
+  const chartList = computed(() => {
+    return [
+      { title: t('overview.transactionTotal'), count: store.totalCount },
+      { title: t('overview.totalCompletedOrders'), count: store.totalCount },
+      { title: t('overview.storePageViews'), count: store.totalCount },
+      { title: t('overview.newMembersCount'), count: store.totalCount },
+    ]
+  })
 
   const handleActive = (index: number, option: number) => {
     if (index === 0) {
@@ -23,7 +31,7 @@
 
 <template>
   <div
-    v-for="(item, index) in props.data"
+    v-for="(item, index) in chartList"
     :key="item.title"
     class="w-full space-y-3 rounded-lg bg-white p-6 shadow-sm transition-shadow duration-300"
   >
@@ -51,14 +59,14 @@
           <el-button-group class="ml-6">
             <el-button
               class="text-nowrap"
-              :class="totalOrdersActive === 1 && 'bg-blue-400 text-white'"
+              :class="totalOrdersActive === 1 && 'isActive__btn'"
               @click="handleActive(index, 1)"
               size="mini"
               >{{ $t('overview.totalCompletedOrders') }}</el-button
             >
             <el-button
               class="text-nowrap"
-              :class="totalOrdersActive === 2 && 'bg-blue-400 text-white'"
+              :class="totalOrdersActive === 2 && 'isActive__btn'"
               @click="handleActive(index, 2)"
               size="mini"
               >{{ $t('overview.totalOrder') }}</el-button
@@ -81,4 +89,8 @@
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .isActive__btn {
+    @apply bg-blue-400 text-white;
+  }
+</style>
