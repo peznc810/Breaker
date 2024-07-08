@@ -5,6 +5,7 @@ export default {
   evening: '晚安',
   am: '上午',
   pm: '下午',
+  language: '語言',
   nav: {
     profile: '個人資料',
     changePassword: '更改密碼',

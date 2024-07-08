@@ -19,7 +19,7 @@
       <SideBar :show="showSide" />
       <div class="app-main">
         <div
-          class="fixed bottom-0 right-0 top-[50px] lg:left-60 lg:w-auto"
+          class="fixed bottom-0 right-0 top-[50px] transition-all duration-300 lg:left-60 lg:w-auto"
           :class="showSide ? 'left-60 w-full' : 'left-0'"
         >
           <main class="h-full overflow-y-auto overflow-x-hidden">

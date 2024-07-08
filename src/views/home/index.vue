@@ -35,15 +35,6 @@
       { label: t('select.thirtyDaysBefore'), value: 4 },
     ]
   })
-  // 數據
-  const chartList = computed(() => {
-    return [
-      { title: t('overview.transactionTotal'), count: 55661 },
-      { title: t('overview.totalCompletedOrders'), count: 24 },
-      { title: t('overview.storePageViews'), count: 5360 },
-      { title: t('overview.newMembersCount'), count: 17 },
-    ]
-  })
   // 熱門商品
 
   // Methods
@@ -88,8 +79,8 @@
           </div>
         </div>
         <!-- Chart Card -->
-        <div class="grid grid-cols-2 gap-4">
-          <ChartCard :data="chartList" />
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <ChartCard />
         </div>
       </div>
 
