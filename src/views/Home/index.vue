@@ -2,8 +2,8 @@
   import { computed, ref } from 'vue'
   import { t } from '@/locales/index'
   import ChartCard from './components/ChartCard/index.vue'
-  import ToDoCard from './components/ToDoCard.vue'
-  import HotCard from './components/HotCard.vue'
+  import ToDoCard from './components/ToDoCard/index.vue'
+  import HotCard from './components/HotCard/index.vue'
   import { useUserStore } from '@/stores/user'
 
   const store = useUserStore()
