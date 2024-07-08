@@ -1,0 +1,1 @@
+import{_ as t,b as e,c as n,p as _}from"./index-BSGGl8IS.js";const s={};function o(r,c){return e(),n("div",null,"order list")}const a=t(s,[["render",o]]),p={__name:"index",setup(r){return(c,i)=>(e(),_(a))}};export{p as default};

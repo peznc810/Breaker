@@ -1,1 +1,0 @@
-import{_ as r,b as c,c as n,p as _}from"./index-WzSfzHc1.js";const s={};function o(e,t){return c(),n("div",null,"product list")}const a=r(s,[["render",o]]),l={__name:"index",setup(e){return(t,p)=>(c(),_(a))}};export{l as default};
