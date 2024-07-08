@@ -74,9 +74,9 @@
 
 <template>
   <div class="transition-shadow duration-300 hover:shadow-lg hover:shadow-black/10">
-    <el-card>
+    <v-card>
       <div class="mb-4 text-lg font-bold">{{ t('overview.hotProducts') }}</div>
-      <el-table :data="descList" :columns="propColumns" type="index">
+      <v-table :data="descList" :columns="propColumns" type="index">
         <template #index-column="{ index }">
           <span>No. {{ index + 1 }}</span>
         </template>
@@ -85,7 +85,7 @@
             <img class="h-full w-full object-cover" :src="row.img" alt="" />
           </div>
         </template>
-      </el-table>
-    </el-card>
+      </v-table>
+    </v-card>
   </div>
 </template>

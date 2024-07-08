@@ -40,40 +40,40 @@
       <div class="text-sm font-normal">{{ item.title }}</div>
       <div class="btn">
         <div v-show="index === 0" class="flex flex-nowrap">
-          <el-button-group class="ml-6">
-            <el-button
+          <v-button-group class="ml-6">
+            <v-button
               :class="transActive === 1 && 'bg-blue-400 text-white'"
               @click="handleActive(index, 1)"
               size="mini"
-              >{{ $t('overview.transactionTotal') }}</el-button
+              >{{ $t('overview.transactionTotal') }}</v-button
             >
-            <el-button
+            <v-button
               :class="transActive === 2 && 'bg-blue-400 text-white'"
               @click="handleActive(index, 2)"
               size="mini"
-              >{{ $t('overview.totalSales') }}</el-button
+              >{{ $t('overview.totalSales') }}</v-button
             >
-          </el-button-group>
+          </v-button-group>
         </div>
         <div v-show="index === 1" class="flex flex-nowrap">
-          <el-button-group class="ml-6">
-            <el-button
+          <v-button-group class="ml-6">
+            <v-button
               class="text-nowrap"
               :class="totalOrdersActive === 1 && 'isActive__btn'"
               @click="handleActive(index, 1)"
               size="mini"
-              >{{ $t('overview.totalCompletedOrders') }}</el-button
+              >{{ $t('overview.totalCompletedOrders') }}</v-button
             >
-            <el-button
+            <v-button
               class="text-nowrap"
               :class="totalOrdersActive === 2 && 'isActive__btn'"
               @click="handleActive(index, 2)"
               size="mini"
-              >{{ $t('overview.totalOrder') }}</el-button
+              >{{ $t('overview.totalOrder') }}</v-button
             >
-          </el-button-group>
+          </v-button-group>
           <RouterLink to="/orderManagement" class="ml-2">
-            <el-button icon="ri-share-box-line" size="mini" />
+            <v-button icon="ri-share-box-line" size="mini" />
           </RouterLink>
         </div>
       </div>

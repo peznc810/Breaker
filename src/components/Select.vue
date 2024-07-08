@@ -7,10 +7,11 @@
    *  @param icon?:string
    */
   const props = defineProps<SelectList>()
+  const emit = defineEmits(['input'])
 
   // Data
   const isClick = ref(false) // 顯示下拉選單
-  const sortValue = ref(1) // 選單選擇: 預設為今天
+  const sortValue = ref(1) // 選單選擇: 預設
 
   // Computed
   /** 用computed locale才會響應 */
@@ -37,6 +38,7 @@
     if (item.value) {
       sortValue.value = item.value
     }
+    emit('input', sortValue.value)
     isClick.value = false // 關閉下拉選單
   }
 

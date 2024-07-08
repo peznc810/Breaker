@@ -8,11 +8,11 @@ import table from './Table.vue'
 type Components = Record<string, any>
 
 const components: Components = {
-  'el-button-group': ButtonGroup,
-  'el-button': Button,
-  'el-select': Select,
-  'el-card': Card,
-  'el-table': table
+  'v-button-group': ButtonGroup,
+  'v-button': Button,
+  'v-select': Select,
+  'v-card': Card,
+  'v-table': table
 }
 
 export const registerComponents = (app: App) => {

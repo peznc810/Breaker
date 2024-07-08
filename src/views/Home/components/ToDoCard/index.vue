@@ -14,7 +14,7 @@
 <template>
   <!-- <div class="flex items-center justify-center gap-4"> -->
   <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
-    <el-card
+    <v-card
       v-for="(item, index) in cardList"
       :key="index"
       class="hover:cursor-pointer hover:shadow-lg hover:shadow-black/10"
@@ -24,6 +24,6 @@
         <div class="text-xl font-medium">{{ item.count }}</div>
         <div>{{ item.title }}</div>
       </div>
-    </el-card>
+    </v-card>
   </div>
 </template>

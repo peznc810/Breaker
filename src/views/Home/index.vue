@@ -45,6 +45,10 @@
       isLoading.value = false
     }, 1000)
   }
+
+  const handleOption = (value: number) => {
+    console.log(value)
+  }
 </script>
 
 <template>
@@ -67,15 +71,15 @@
             </div>
           </div>
           <div class="space-x-6">
-            <el-select :data="sortList" />
-            <el-button
+            <v-select :data="sortList" @input="handleOption" />
+            <v-button
               icon="fc-combo-chart"
               class="transition-colors duration-200 hover:text-blue-500"
               :loading="isLoading"
               @click="handleClick"
             >
               {{ t('moreData') /** 更多數據 */ }}
-            </el-button>
+            </v-button>
           </div>
         </div>
         <!-- Chart Card -->
