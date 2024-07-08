@@ -5,8 +5,10 @@ import App from './App.vue'
 import router from './router'
 import vSvg from './directives/svg'
 import i18n from './locales/index'
+import ElementPlus from 'element-plus'
 // styles
 import './assets/main.css'
+import 'element-plus/dist/index.css'
 // oh-vue-icons
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import { ohIcon } from './plugins/ohIcon'
@@ -21,6 +23,7 @@ app.directive('svg', vSvg) // custom directives
 app.use(createPinia())
 app.use(router)
 app.use(i18n)
+app.use(ElementPlus)
 
 app.component('v-icon', OhVueIcon)
 registerComponents(app)

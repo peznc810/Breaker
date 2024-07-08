@@ -12,7 +12,7 @@
 <template>
   <div class="w-full overflow-x-auto">
     <div class="w-full">
-      <table class="el-table min-w-[600px]">
+      <table class="v-table min-w-[600px]">
         <thead class="el-table__header">
           <tr>
             <!-- 第一列的樣式 -->
@@ -73,7 +73,7 @@
 </template>
 
 <style scoped>
-  .el-table {
+  .v-table {
     width: 100%;
     border-spacing: 0;
     border-collapse: collapse;
