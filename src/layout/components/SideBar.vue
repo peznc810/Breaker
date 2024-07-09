@@ -7,6 +7,7 @@
   const props = defineProps({
     show: Boolean,
   })
+  const emits = defineEmits(['click'])
 
   const menus = router.options.routes[0].children
 </script>
@@ -17,7 +18,7 @@
     :class="props.show ? 'w-60' : ''"
   >
     <ul class="absolute bottom-0 top-[50px] w-full overflow-y-auto">
-      <li v-for="menu in menus" :key="menu.name">
+      <li v-for="menu in menus" :key="menu.name" @click="emits('click')">
         <RouterLink
           v-if="menu.meta && !menu.meta.hidden"
           :to="menu.path"
