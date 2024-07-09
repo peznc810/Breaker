@@ -1,8 +1,9 @@
-export interface Columns {
+export interface Column {
   label: string
   prop: string
   type?: 'currency'
   width?: string
+  sortable?: boolean
 }
 
 export interface TableProps {

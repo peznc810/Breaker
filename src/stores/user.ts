@@ -10,7 +10,7 @@ export const useUserStore = defineStore('user', () => {
 
   // getters
   // 所有使用者
-  const gerUsers = async () => {
+  const getUsers = async () => {
     const api = 'https://fakestoreapi.com/users'
     try {
       const res = await axios.get(api)
@@ -61,7 +61,8 @@ export const useUserStore = defineStore('user', () => {
 
   return {
     user,
-    gerUsers,
+    users,
+    getUsers,
     getUser,
     addUser,
     updateUser,
