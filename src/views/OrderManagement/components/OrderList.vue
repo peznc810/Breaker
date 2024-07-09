@@ -274,7 +274,7 @@
     <div class="flex justify-center">
       <el-pagination
         v-model="currentPage"
-        class="mt-4 hidden md:flex"
+        class="desktop-pagination mt-4"
         layout="prev, pager, next"
         :total="originData.length"
         :page-size="pageSize"
@@ -283,7 +283,7 @@
       />
       <el-pagination
         v-model="currentPage"
-        class="mt-4 md:hidden"
+        class="mobile-pagination mt-4"
         layout="prev, pager, next"
         :total="originData.length"
         :page-size="pageSize"
@@ -303,5 +303,18 @@
   .list-leave-to {
     opacity: 0;
     transform: translateX(-30px);
+  }
+
+  .desktop-pagination {
+    display: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    .desktop-pagination {
+      display: flex;
+    }
+    .mobile-pagination {
+      display: none;
+    }
   }
 </style>
