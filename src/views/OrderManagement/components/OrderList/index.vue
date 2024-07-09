@@ -52,19 +52,21 @@
 
       // 組合資訊
       item.productPrice = productInfo.price || 0
-      // item.orderName = user.username || ''
+      item.img = productInfo.image || ''
+      item.title = productInfo.title || ''
 
       return item
     })
     return info
   }
   // 購物車資料重組
-  const getOrderName = (id: number) => {
+  const getOrderUser = (id: number) => {
     const userInfo = userStore.users.find((user) => user.id === id)
-    const name = userInfo ? userInfo.username : ''
+    const orderName = userInfo ? userInfo.username : ''
     const email = userInfo ? userInfo.email : ''
+    const phone = userInfo ? userInfo.phone : ''
 
-    return { name, email }
+    return { orderName, email, phone }
   }
   // 計算總額
   const calculateTotal = (data: any[]) => {
@@ -102,8 +104,7 @@
       // 計算總金額
       const totalPrice = calculateTotal(productInfo)
       // 取得訂購人
-      const orderName = getOrderName(userId).name
-      const email = getOrderName(userId).email
+      const orderUser = getOrderUser(userId)
       // 訂單號碼
       const orderNumber = number(date)
 
@@ -113,9 +114,8 @@
         date: newDate,
         products: productInfo,
         total: totalPrice,
-        orderName,
         orderNumber,
-        email,
+        ...orderUser,
       }
 
       return newOrder
@@ -180,6 +180,10 @@
     return time.getTime() > Date.now()
   }
 
+  const handleOrderInfo = (order: any) => {
+    store.setOrder(order)
+  }
+
   // lifecycle
   onMounted(async () => {
     await init()
@@ -234,6 +238,7 @@
           <RouterLink
             :to="`/orderManagement/${scope.row.orderNumber}`"
             class="text-nowrap text-blue-400"
+            @click="handleOrderInfo(scope.row)"
           >
             {{ scope.row.orderNumber }}
           </RouterLink>
@@ -255,7 +260,11 @@
         <v-card v-for="item in tableData" :key="item.orderNumber" class="mb-5 text-sm md:hidden">
           <div class="mb-2 border-b">
             <span>訂單號碼：</span>
-            <RouterLink :to="`/orders/${item.orderNumber}`" class="text-blue-400">
+            <RouterLink
+              :to="`/orders/${item.orderNumber}`"
+              class="text-blue-400"
+              @click="handleOrderInfo(item)"
+            >
               {{ item.orderNumber }}
             </RouterLink>
           </div>
