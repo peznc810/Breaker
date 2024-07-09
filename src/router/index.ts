@@ -17,17 +17,30 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/Home/index.vue'),
         meta: {
           title: t('dashboard'),
-          icon: 'bi-grid-1x2'
-        }
+          icon: 'bi-grid-1x2',
+        },
       },
       {
         path: 'orderManagement',
         component: () => import('../views/OrderManagement/index.vue'),
         name: 'orderManagement',
+        redirect: '/orderManagement/orders',
         meta: {
           title: t('orderManagement'),
-          icon: 'hi-clipboard-list'
-        }
+          icon: 'hi-clipboard-list',
+        },
+        children: [
+          {
+            path: 'orders',
+            name: 'orders',
+            component: () => import('../views/OrderManagement/components/OrderList/index.vue'),
+          },
+          {
+            path: ':orderNumber',
+            name: 'order',
+            component: () => import('../views/OrderManagement/components/Order/index.vue'),
+          },
+        ],
       },
       {
         path: 'productManagement',
@@ -36,8 +49,8 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: t('productManagement'),
           icon: 'la-shopping-bag-solid',
-          hidden: true
-        }
+          hidden: true,
+        },
       },
       {
         path: 'report',
@@ -46,13 +59,13 @@ const routes: RouteRecordRaw[] = [
         meta: {
           title: t('report'),
           icon: 'la-user-solid',
-          hidden: true
-        }
-      }
-    ]
+          hidden: true,
+        },
+      },
+    ],
   },
   {
-    path:'/users',
+    path: '/users',
     component: User,
     redirect: '/profile',
     children: [
@@ -62,7 +75,7 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/User/UsersConfig.vue'),
         meta: {
           title: t('user.profile'),
-        }
+        },
       },
       {
         path: 'changePassword',
@@ -70,26 +83,26 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/User/UsersConfig.vue'),
         meta: {
           title: t('user.changePassword'),
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
   },
   {
     path: '/:pathMath(.*)*',
     name: 'NotFound',
-    redirect: '/dashboard'
+    redirect: '/dashboard',
     // component: () => import('@/views/404.vue')
-  }
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: routes as RouteRecordRaw[]
+  routes: routes as RouteRecordRaw[],
 })
 
 router.beforeEach((to, from, next) => {

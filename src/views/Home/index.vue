@@ -7,7 +7,9 @@
   import { useUserStore } from '@/stores/user'
 
   const store = useUserStore()
+
   const isLoading = ref(false)
+
   const now = computed(() => {
     const hour = new Date().getHours()
     const minute = new Date().getMinutes()
@@ -50,10 +52,7 @@
 <template>
   <div class="p-6">
     <div class="flex flex-col gap-5">
-      <div class="mb-4 text-2xl font-bold">
-        <!-- 目前會空白狀態，需等登入系統完成 -->
-        {{ greet }}, {{ store.user?.username || '' }}
-      </div>
+      <div class="mb-4 text-2xl font-bold">{{ greet }}, {{ store.user?.username || '' }}</div>
       <!-- 待辦事項 -->
       <ToDoCard />
       <!-- 數據 -->
