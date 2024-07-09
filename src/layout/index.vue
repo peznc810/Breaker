@@ -24,10 +24,28 @@
         >
           <main class="h-full overflow-y-auto overflow-x-hidden">
             <Breadcrumb />
-            <RouterView />
+            <Transition name="fade" mode="out-in">
+              <RouterView v-slot="{ Component }">
+                <component :is="Component" />
+              </RouterView>
+            </Transition>
+            <!-- <RouterView /> -->
           </main>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: all 0.5s ease-in;
+  }
+
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+</style>

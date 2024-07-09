@@ -7,7 +7,7 @@
 </script>
 
 <template>
-  <Transition name="bread">
+  <Transition name="bread" mode="out-in">
     <div
       v-if="route.fullPath !== '/dashboard'"
       class="breadcrumb border-b bg-white px-4 py-3 shadow-sm"
@@ -19,7 +19,7 @@
 
 <style scoped>
   .bread-enter-active {
-    transition: all 0.6s ease-in;
+    transition: all 0.5s ease-in;
   }
 
   .bread-leave-active {
