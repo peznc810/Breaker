@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw, RouteLocationNormalized, NavigationGuard } from 'vue-router'
 import Layout from '@/layout/index.vue'
+import User from '@/views/User/index.vue'
 import Login from '@/views/Login/index.vue'
 import { t } from '@/locales/index'
 
@@ -12,40 +13,63 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: 'dashboard',
+        name: 'dashboard',
         component: () => import('@/views/Home/index.vue'),
-        name: t('dashboard'),
         meta: {
-          title: '首頁',
+          title: t('dashboard'),
           icon: 'bi-grid-1x2'
         }
       },
       {
         path: 'orderManagement',
         component: () => import('../views/OrderManagement/index.vue'),
-        name: t('orderManagement'),
+        name: 'orderManagement',
         meta: {
-          title: '訂單管理',
+          title: t('orderManagement'),
           icon: 'hi-clipboard-list'
         }
       },
       {
         path: 'productManagement',
-        name: t('productManagement'),
+        name: 'productManagement',
         component: () => import('../views/ProductManagement/index.vue'),
         meta: {
-          title: '商品管理',
+          title: t('productManagement'),
           icon: 'la-shopping-bag-solid',
           hidden: true
         }
       },
       {
         path: 'report',
-        name: t('report'),
+        name: 'report',
         component: () => import('../views/ReportView/index.vue'),
         meta: {
-          title: '報表及分析',
+          title: t('report'),
           icon: 'la-user-solid',
           hidden: true
+        }
+      }
+    ]
+  },
+  {
+    path:'/users',
+    component: User,
+    redirect: '/profile',
+    children: [
+      {
+        path: 'profile',
+        name: 'profile',
+        component: () => import('@/views/User/Profile.vue'),
+        meta: {
+          title: t('user.profile'),
+        }
+      },
+      {
+        path: 'changePassword',
+        name: 'changePassword',
+        component: () => import('@/views/User/ChangePassword.vue'),
+        meta: {
+          title: t('user.changePassword'),
         }
       }
     ]
