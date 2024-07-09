@@ -1,12 +1,8 @@
 <script lang="ts" setup>
-  import { computed } from 'vue'
-  import type { Columns, TableProps } from '@/@types/components/table'
+  import type { TableProps } from '@/@types/components/table'
   import { thousandsSeparator } from '@/utils/mixin'
 
   const props = defineProps<TableProps>()
-
-  // 客製化的欄位寬度
-  const columnWidth = (column: Columns) => {}
 </script>
 
 <template>
