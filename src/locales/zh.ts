@@ -6,11 +6,6 @@ export default {
   am: '上午',
   pm: '下午',
   language: '語言',
-  nav: {
-    profile: '個人資料',
-    changePassword: '更改密碼',
-    logout: '登出',
-  },
   overview: {
     unRead: '留言未讀取',
     unShipped: '訂單未出貨',
@@ -33,4 +28,9 @@ export default {
     sevenDaysBefore: '過去 7 天',
     thirtyDaysBefore: '過去 30 天',
   },
+  user: {
+    profile: '個人資料',
+    changePassword: '更改密碼',
+    logout: '登出',
+  }
 }

@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { RouterLink, useRouter } from 'vue-router'
+  import { t } from '@/locales/index'
 
   const router = useRouter()
 
@@ -23,7 +24,7 @@
           class="inline-block w-full px-4 py-3 hover:bg-gray-600"
         >
           <v-icon :name="menu.meta && menu.meta.icon" scale="1" />
-          {{ menu.name }}
+          {{ menu.meta && menu.meta.title }}
         </RouterLink>
       </li>
     </ul>

@@ -3,7 +3,7 @@
   import { computed } from 'vue'
 
   const route = useRoute()
-  const routeName = computed(() => route.name || route.path)
+  const routeName = computed(() => route.meta.title)
 </script>
 
 <template>
@@ -12,7 +12,7 @@
     class="breadcrumb border-b bg-white px-4 py-3 shadow-sm"
   >
     <Transition name="bread" mode="out-in">
-      <div :key="routeName">{{ routeName }}</div>
+      <div :key="route.path">{{ routeName }}</div>
     </Transition>
   </div>
 </template>
