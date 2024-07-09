@@ -2,16 +2,13 @@
   import { ref, computed } from 'vue'
   import { RouterLink } from 'vue-router'
   import Chart from './Chart.vue'
-  import { thousandsSeparator } from '@/utils/mixin'
   import { t } from '@/locales/index'
-  import { useChartStore } from '@/stores/chart'
-
-  const store = useChartStore()
+  import type { ListItem } from '@/@types/view/home'
 
   const transActive = ref(1)
   const totalOrdersActive = ref(1)
   // 數據
-  const chartList = computed(() => {
+  const chartList = computed<ListItem[]>(() => {
     return [
       { title: t('overview.transactionTotal'), type: 'trans' },
       { title: t('overview.totalCompletedOrders'), type: 'orders' },

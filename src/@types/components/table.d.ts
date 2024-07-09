@@ -1,7 +1,7 @@
 export interface Column {
   label: string
   prop: string
-  type?: 'currency'
+  type?: string
   width?: string
   sortable?: boolean
 }

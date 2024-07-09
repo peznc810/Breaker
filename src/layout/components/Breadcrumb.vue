@@ -19,7 +19,7 @@
 
 <style scoped>
   .bread-enter-active {
-    transition: all 0.5s ease-in 1s;
+    transition: all 0.5s ease-in 0.5s;
   }
 
   .bread-leave-active {
