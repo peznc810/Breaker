@@ -122,7 +122,7 @@
     })
     return data
   })
-  // 搜尋
+  // 搜尋 & 分頁
   const currentTableData = computed(() => {
     const start = (currentPage.value - 1) * pageSize.value
     const end = start + pageSize.value
@@ -131,6 +131,16 @@
   const handlePageChange = (val: number) => {
     currentPage.value = val
     tableData.value = currentTableData.value
+  }
+  const handleMobilePageChange = (val: number) => {
+    loading.value = true
+    currentPage.value = val
+    // 為了切換頁面時有過渡效果
+    tableData.value = []
+    setTimeout(() => {
+      tableData.value = currentTableData.value
+    }, 500)
+    loading.value = false
   }
   const filterData = computed(() => {
     const searchVal = search.value.toLowerCase()
@@ -180,11 +190,11 @@
 <template>
   <v-card class="overflow-auto">
     <!-- 搜尋 -->
-    <div class="mb-5 flex items-center gap-5">
+    <div class="mb-5 flex flex-wrap items-center gap-5">
       <el-input
         v-model="search"
-        placeholder="請輸入訂單號碼或訂購人"
-        class="w-1/2"
+        placeholder="請輸入訂單號碼 / 訂購人 / 信箱 / 合計"
+        class="w-full md:w-1/2"
         size="large"
         @keydown.enter="onSearch('input')"
       >
@@ -205,10 +215,10 @@
 
     <!-- 表格 -->
     <el-table
+      v-loading="loading"
       ref="tableRef"
       :data="tableData"
-      class="w-full min-w-[720px]"
-      v-loading="loading"
+      class="hidden w-full min-w-[720px] md:block"
       :default-sort="{ prop: 'date', order: 'descending' }"
     >
       <el-table-column type="selection" width="55" />
@@ -235,19 +245,63 @@
       </el-table-column>
     </el-table>
 
+    <div v-show="loading" v-loading="loading" class="min-h-40 md:hidden" />
+    <!-- 手機版表格 -->
+    <TransitionGroup name="list" tag="div">
+      <template v-if="!loading">
+        <v-card v-for="item in tableData" :key="item.orderNumber" class="mb-5 text-sm md:hidden">
+          <div class="mb-2 border-b">
+            <span>訂單號碼：</span>
+            <RouterLink :to="`/orders/${item.orderNumber}`" class="text-blue-400">
+              {{ item.orderNumber }}
+            </RouterLink>
+          </div>
+          <div class="mb-2 border-b">
+            <span>{{ item.date }}</span>
+          </div>
+          <div class="mb-2 border-b">
+            <span>{{ item.orderName }} ({{ item.email }})</span>
+          </div>
+          <div>
+            <span>合計：</span>
+            {{ 'NT$ ' + thousandsSeparator(item.total) }}
+          </div>
+        </v-card>
+      </template>
+    </TransitionGroup>
+
     <!-- 分頁 -->
     <div class="flex justify-center">
       <el-pagination
         v-model="currentPage"
-        class="mt-4"
+        class="mt-4 hidden md:flex"
         layout="prev, pager, next"
         :total="originData.length"
         :page-size="pageSize"
         :hide-on-single-page="true"
         @update:current-page="handlePageChange"
       />
+      <el-pagination
+        v-model="currentPage"
+        class="mt-4 md:hidden"
+        layout="prev, pager, next"
+        :total="originData.length"
+        :page-size="pageSize"
+        :hide-on-single-page="true"
+        @update:current-page="handleMobilePageChange"
+      />
     </div>
   </v-card>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .list-enter-active,
+  .list-leave-active {
+    transition: all 0.5s ease;
+  }
+  .list-enter-from,
+  .list-leave-to {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+</style>
