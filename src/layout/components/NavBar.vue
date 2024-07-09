@@ -1,21 +1,21 @@
 <script lang="ts" setup>
   import { RouterLink } from 'vue-router'
-  import { ref, reactive, onMounted, onUnmounted } from 'vue'
+  import { ref, reactive, onMounted, onUnmounted, computed, watchEffect } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { t } from '@/locales/index'
   import { useUserStore } from '@/stores/user'
   import type { Menu, MenuItem, MobileMenu } from '@/@types/components/navBar'
+
+  // declare
+  const { locale } = useI18n()
+  const store = useUserStore()
 
   const props = defineProps({
     show: Boolean,
   })
   const emit = defineEmits(['click'])
 
-  // declare
-  const { locale } = useI18n()
-  const store = useUserStore()
-
-  // data // TODO: 新增 path 路徑檔案
+  // data
   const userMenu: MenuItem[] = reactive([
     { name: t('user.profile'), path: '/profile' },
     { name: t('user.changePassword'), path: '/changePassword' },
@@ -25,9 +25,14 @@
     { name: '繁體中文', value: 'zh' },
     { name: 'English', value: 'en' },
   ])
+  const username = computed(() => store.user?.username || '')
   const mobileMenu: MobileMenu[] = reactive([
     { name: t('language'), showChildren: false, children: langMenu },
-    { name: `${t('hello')}，${store.user?.username}`, showChildren: false, children: userMenu },
+    {
+      name: `${t('hello')}，${username.value}`,
+      showChildren: false,
+      children: [],
+    },
   ])
 
   const showUserMenu = ref(false)
@@ -35,6 +40,8 @@
   const showMobileMenu = ref(false)
   const userBtn = ref<HTMLElement | null>(null)
   const langBtn = ref<HTMLElement | null>(null)
+
+  mobileMenu[1].name = `${t('hello')}，${username.value}`
 
   /* methods */
   // 切換語言
@@ -83,6 +90,9 @@
   })
   onUnmounted(() => {
     document.addEventListener('click', handleWindowClick)
+  })
+  watchEffect(() => {
+    mobileMenu[1].name = `${t('hello')}，${username.value}`
   })
 </script>
 
@@ -138,7 +148,7 @@
             <!-- User Config -->
             <div class="relative">
               <button type="button" ref="userBtn" @click="toggleMenu('user')">
-                <span>{{ t('hello') }}，{{ store.user?.username }}</span>
+                <span>{{ t('hello') }}，{{ store.user?.username || '' }}</span>
                 <v-icon name="hi-chevron-down" scale="0.8" />
               </button>
               <!-- 下拉選單 -->
@@ -178,10 +188,14 @@
                   }}</RouterLink>
                 </template>
                 <template v-else>
-                  <button type="button" class="mobile-outside-menu" @click="toggleMenu(menu)">
+                  <div
+                    class="mobile-outside-menu"
+                    @click="toggleMenu(menu)"
+                    :class="menu.children?.length && 'hover:cursor-pointer'"
+                  >
                     <span>{{ menu.name }}</span>
-                    <v-icon name="hi-chevron-down" scale="0.8" />
-                  </button>
+                    <v-icon v-if="menu.children?.length" name="hi-chevron-down" scale="0.8" />
+                  </div>
                 </template>
                 <!-- 內層 -->
                 <ul v-show="menu.showChildren" class="text-white">

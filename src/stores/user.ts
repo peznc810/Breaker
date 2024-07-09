@@ -37,9 +37,7 @@ export const useUserStore = defineStore('user', () => {
       console.error('Failed to fetch users:', error)
     }
   }
-  // 取得使用者的假資料，做出登入系統後要改掉
-  getUser(1)
-
+  
   // actions
   const addUser = (user: User) => {
     users.value.push(user)
