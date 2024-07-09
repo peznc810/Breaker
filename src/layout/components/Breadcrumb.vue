@@ -10,7 +10,7 @@
   <Transition name="bread" mode="out-in">
     <div
       v-if="route.fullPath !== '/dashboard'"
-      class="breadcrumb border-b bg-white px-4 py-3 shadow-sm"
+      class="breadcrumb absolute left-0 right-0 border-b bg-white px-4 py-3 shadow-sm"
     >
       <div :key="route.path">{{ routeName }}</div>
     </div>
@@ -19,11 +19,11 @@
 
 <style scoped>
   .bread-enter-active {
-    transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in 1s;
   }
 
   .bread-leave-active {
-    transition: all 0s ease;
+    transition: all 0.5s ease-in;
   }
 
   .bread-enter-from,

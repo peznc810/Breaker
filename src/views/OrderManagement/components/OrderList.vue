@@ -231,7 +231,7 @@
         :width="column.width || 'auto'"
       >
         <template v-if="column.prop === 'orderNumber'" #default="scope">
-          <RouterLink :to="`/orders/${scope.row.orderNumber}`" class="text-blue-400">
+          <RouterLink :to="`/orders/${scope.row.orderNumber}`" class="text-nowrap text-blue-400">
             {{ scope.row.orderNumber }}
           </RouterLink>
         </template>
