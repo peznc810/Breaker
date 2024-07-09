@@ -7,25 +7,28 @@
 </script>
 
 <template>
-  <div
-    v-if="route.fullPath !== '/dashboard'"
-    class="breadcrumb border-b bg-white px-4 py-3 shadow-sm"
-  >
-    <Transition name="bread" mode="out-in">
+  <Transition name="bread">
+    <div
+      v-if="route.fullPath !== '/dashboard'"
+      class="breadcrumb border-b bg-white px-4 py-3 shadow-sm"
+    >
       <div :key="route.path">{{ routeName }}</div>
-    </Transition>
-  </div>
+    </div>
+  </Transition>
 </template>
 
 <style scoped>
-  .bread-enter-active,
+  .bread-enter-active {
+    transition: all 0.6s ease-in;
+  }
+
   .bread-leave-active {
-    transition: all 0.5s ease;
+    transition: all 0s ease;
   }
 
   .bread-enter-from,
   .bread-leave-to {
-    transform: translateX(-20px);
+    transform: translateY(-20px);
     opacity: 0;
   }
 </style>
