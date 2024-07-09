@@ -17,9 +17,9 @@
 
   // data // TODO: 新增 path 路徑檔案
   const userMenu: MenuItem[] = reactive([
-    { name: t('nav.profile'), path: '/profile' },
-    { name: t('nav.changePassword'), path: '/changePassword' },
-    { name: t('nav.logout'), path: '/logout' },
+    { name: t('user.profile'), path: '/users/profile' },
+    { name: t('user.changePassword'), path: '/users/changePassword' },
+    { name: t('user.logout'), path: '/logout' },
   ])
   const langMenu: MenuItem[] = reactive([
     { name: '繁體中文', value: 'zh' },

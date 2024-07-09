@@ -59,7 +59,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'profile',
         name: 'profile',
-        component: () => import('@/views/User/Profile.vue'),
+        component: () => import('@/views/User/UsersConfig.vue'),
         meta: {
           title: t('user.profile'),
         }
@@ -67,7 +67,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'changePassword',
         name: 'changePassword',
-        component: () => import('@/views/User/ChangePassword.vue'),
+        component: () => import('@/views/User/UsersConfig.vue'),
         meta: {
           title: t('user.changePassword'),
         }

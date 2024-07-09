@@ -12,6 +12,8 @@ import {
   RiShareBoxLine,
   BiList,
   HiDotsVertical,
+  BiArrowRightShort,
+  MdLoginRound,
 } from 'oh-vue-icons/icons'
 
 export const ohIcon = [
@@ -27,5 +29,7 @@ export const ohIcon = [
   RiLoader2Fill, // loading
   RiShareBoxLine, // 開分頁
   BiList, // 列表
-  HiDotsVertical,
+  HiDotsVertical, // 點點
+  BiArrowRightShort, // 右鍵頭
+  MdLoginRound,
 ]

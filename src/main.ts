@@ -7,8 +7,8 @@ import vSvg from './directives/svg'
 import i18n from './locales/index'
 import ElementPlus from 'element-plus'
 // styles
-import './assets/main.css'
 import 'element-plus/dist/index.css'
+import './assets/main.css'
 // oh-vue-icons
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import { ohIcon } from './plugins/ohIcon'
