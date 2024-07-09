@@ -14,6 +14,7 @@ import {
   HiDotsVertical,
   BiArrowRightShort,
   MdLoginRound,
+  IoSearch,
 } from 'oh-vue-icons/icons'
 
 export const ohIcon = [
@@ -32,4 +33,5 @@ export const ohIcon = [
   HiDotsVertical, // 點點
   BiArrowRightShort, // 右鍵頭
   MdLoginRound,
+  IoSearch,
 ]
