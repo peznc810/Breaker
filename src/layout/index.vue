@@ -24,11 +24,11 @@
         >
           <main class="h-full overflow-y-auto overflow-x-hidden">
             <Breadcrumb />
-            <Transition name="fade" mode="out-in">
-              <RouterView v-slot="{ Component }">
+            <RouterView v-slot="{ Component }">
+              <Transition name="fade" mode="out-in">
                 <component :is="Component" />
-              </RouterView>
-            </Transition>
+              </Transition>
+            </RouterView>
             <!-- <RouterView /> -->
           </main>
         </div>
@@ -46,6 +46,6 @@
   .fade-enter-from,
   .fade-leave-to {
     opacity: 0;
-    transform: translateX(-30px);
+    transform: translateX(20px);
   }
 </style>
