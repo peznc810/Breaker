@@ -16,7 +16,7 @@
   <div class="app-wrapper">
     <div class="relative h-screen overflow-x-hidden bg-light pt-[50px] text-slate-700">
       <NavBar @click="toggleSide" :show="showSide" />
-      <SideBar :show="showSide" />
+      <SideBar :show="showSide" @click="toggleSide" />
       <div class="app-main">
         <div
           class="fixed bottom-0 right-0 top-[50px] transition-all duration-300 lg:left-60 lg:w-auto"
