@@ -1,8 +1,9 @@
 <script lang="ts" setup>
   import { computed } from 'vue'
   import { t } from '@/locales/index'
+  import type { Column } from '@/@types/components/table'
 
-  const propColumns = computed(() => {
+  const propColumns = computed<Column[]>(() => {
     return [
       {
         label: '',
