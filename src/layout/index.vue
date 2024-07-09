@@ -40,7 +40,7 @@
 <style scoped>
   .fade-enter-active,
   .fade-leave-active {
-    transition: all 0.5s ease-in;
+    transition: all 0.5s ease;
   }
 
   .fade-enter-from,
