@@ -13,10 +13,10 @@
   // 數據
   const chartList = computed(() => {
     return [
-      { title: t('overview.transactionTotal'), count: store.totalCount },
-      { title: t('overview.totalCompletedOrders'), count: store.totalCount },
-      { title: t('overview.storePageViews'), count: store.totalCount },
-      { title: t('overview.newMembersCount'), count: store.totalCount },
+      { title: t('overview.transactionTotal'), type: 'trans' },
+      { title: t('overview.totalCompletedOrders'), type: 'orders' },
+      { title: t('overview.storePageViews'), type: 'views' },
+      { title: t('overview.newMembersCount'), type: 'members' },
     ]
   })
 
@@ -78,14 +78,7 @@
         </div>
       </div>
     </div>
-
-    <div v-if="index === 0" class="text-lg font-bold">NT$ {{ thousandsSeparator(item.count) }}</div>
-    <div v-else class="text-lg font-bold">{{ thousandsSeparator(item.count) }}</div>
-
-    <!-- Chart -->
-    <div class="mt-4">
-      <Chart />
-    </div>
+    <Chart :type="item.type" />
   </div>
 </template>
 
