@@ -45,10 +45,6 @@
       isLoading.value = false
     }, 1000)
   }
-
-  const handleOption = (value: number) => {
-    console.log(value)
-  }
 </script>
 
 <template>
@@ -71,7 +67,7 @@
             </div>
           </div>
           <div class="space-x-6">
-            <v-select :data="sortList" @input="handleOption" />
+            <v-select :data="sortList" />
             <v-button
               icon="fc-combo-chart"
               class="transition-colors duration-200 hover:text-blue-500"
