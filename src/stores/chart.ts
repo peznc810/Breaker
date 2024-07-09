@@ -2,8 +2,10 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
 export const useChartStore = defineStore('chart', () => {
-  const chart = ref()
-  const totalCount = ref(0)
+  const transChart = ref<number[]>([])
+  const ordersChart = ref<number[]>([])
+  const viewsChart = ref<number[]>([])
+  const membersChart = ref<number[]>([])
 
   const getTimeLabel = () => {
     const date = new Date()
@@ -22,6 +24,30 @@ export const useChartStore = defineStore('chart', () => {
     return labels
   }
 
+  const chartData = (type: 'trans' | 'orders' | 'views' | 'members') => {
+    const data = []
+    const labels = getTimeLabel()
+
+    for (let i = 0; i < labels.length; i++) {
+      data.push(Math.ceil(Math.random() * 10000))
+    }
+
+    switch (type) {
+      case 'trans':
+        transChart.value = data
+        break
+      case 'orders':
+        ordersChart.value = data
+        break
+      case 'views':
+        viewsChart.value = data
+        break
+      case 'members':
+        membersChart.value = data
+        break
+    }
+  }
+
   const fakeData = () => {
     const data = []
     const labels = getTimeLabel()
@@ -30,21 +56,8 @@ export const useChartStore = defineStore('chart', () => {
       data.push(Math.ceil(Math.random() * 10000))
     }
 
-    totalCount.value = data.reduce((a, b) => a + b, 0)
     return data
   }
 
-  const fakeData2 = () => {
-    const data = []
-    const labels = getTimeLabel()
-
-    for (let i = 0; i < labels.length; i++) {
-      data.push(Math.ceil(Math.random() * 10000))
-    }
-
-    totalCount.value = data.reduce((a, b) => a + b, 0)
-    return data
-  }
-
-  return { chart, getTimeLabel, fakeData, fakeData2, totalCount }
+  return { getTimeLabel, chartData, fakeData, transChart, ordersChart, viewsChart, membersChart }
 })
