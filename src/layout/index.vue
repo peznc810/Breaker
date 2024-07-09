@@ -1,15 +1,23 @@
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { onMounted, ref } from 'vue'
   import { RouterView } from 'vue-router'
   import SideBar from './components/SideBar.vue'
   import NavBar from './components/NavBar.vue'
   import Breadcrumb from './components/Breadcrumb.vue'
+  import { useUserStore } from '@/stores/user'
+
+  const store = useUserStore()
 
   const showSide = ref(false)
+
   // RWD
   const toggleSide = () => {
     showSide.value = !showSide.value
   }
+
+  onMounted(async () => {
+    await store.getUser(1)
+  })
 </script>
 
 <template>
