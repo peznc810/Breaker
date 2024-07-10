@@ -6,7 +6,7 @@
 </script>
 
 <template>
-  <div class="w-full overflow-x-auto">
+  <div class="w-full overflow-x-auto" :class="props.class">
     <div class="w-full">
       <table class="v-table min-w-[600px]">
         <thead class="el-table__header">
