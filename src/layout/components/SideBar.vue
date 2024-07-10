@@ -26,8 +26,7 @@
           v-if="menu.meta && !menu.meta.hidden"
           :to="`/${menu.path}`"
           active-class="bg-gray-600 shadow-sm text-white"
-          class="inline-block w-full px-4 py-3 transition-transform duration-300 hover:bg-gray-600 lg:translate-x-0"
-          :class="props.show ? 'translate-x-0' : '-translate-x-full'"
+          class="inline-block w-full text-nowrap px-4 py-3 hover:bg-gray-600 lg:translate-x-0"
         >
           <v-icon :name="menu.meta && menu.meta.icon" scale="1" />
           {{ t(String(menu.meta.title)) }}

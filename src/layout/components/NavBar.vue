@@ -132,7 +132,7 @@
         :class="props.show ? 'w-60' : 'w-0'"
       >
         <div class="flex-shrink-0">
-          <span class="lg:block" :class="props.show ? 'block' : 'hidden'">R SHOP</span>
+          <span class="text-nowrap lg:block" :class="props.show ? 'block' : 'hidden'">R SHOP</span>
         </div>
       </div>
       <!-- hamburger -->
