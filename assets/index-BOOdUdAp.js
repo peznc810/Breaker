@@ -1,1 +1,0 @@
-import{_ as o,b as e,e as n,k as a,l as t,u as c,T as _,q as r,x as d,y as i}from"./index-Cx16PBX3.js";const l={class:"mt-[50px] p-4"},p={__name:"index",setup(u){return(f,m)=>(e(),n("div",l,[a(c(d),null,{default:t(({Component:s})=>[a(_,{name:"fade",mode:"out-in"},{default:t(()=>[(e(),r(i(s)))]),_:2},1024)]),_:1})]))}},k=o(p,[["__scopeId","data-v-9fa1a04f"]]);export{k as default};

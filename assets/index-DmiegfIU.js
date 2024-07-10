@@ -1,0 +1,1 @@
+import{_ as o,b as e,e as n,l as a,m as t,u as c,T as _,q as r,x as d,y as i}from"./index-CUKC6qIn.js";const l={class:"mt-[50px] p-4"},m={__name:"index",setup(p){return(u,f)=>(e(),n("div",l,[a(c(d),null,{default:t(({Component:s})=>[a(_,{name:"fade",mode:"out-in"},{default:t(()=>[(e(),r(i(s)))]),_:2},1024)]),_:1})]))}},h=o(m,[["__scopeId","data-v-9fa1a04f"]]);export{h as default};
