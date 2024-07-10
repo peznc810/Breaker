@@ -1,1 +1,0 @@
-import{_ as o,b as e,e as n,j as a,k as t,u as c,T as _,p as r,s as d,x as i}from"./index-D3DwQV_e.js";const p={class:"mt-[50px] p-4"},l={__name:"index",setup(u){return(f,m)=>(e(),n("div",p,[a(c(d),null,{default:t(({Component:s})=>[a(_,{name:"fade",mode:"out-in"},{default:t(()=>[(e(),r(i(s)))]),_:2},1024)]),_:1})]))}},k=o(l,[["__scopeId","data-v-9fa1a04f"]]);export{k as default};
