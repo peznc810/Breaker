@@ -32,5 +32,14 @@ export default {
     profile: '個人資料',
     changePassword: '更改密碼',
     logout: '登出',
+  },
+  sales: '銷量',
+  viewCount: '商品瀏覽量',
+  hot: {
+    miniPiston: '迷你活塞',
+    gearSet: '齒輪套裝組',
+    miniClassic: 'Austin Mini 經典款',
+    miniCooperClassic: 'Mini Cooper 經典款',
+    multiToolSet: '多功能工具組',
   }
 }

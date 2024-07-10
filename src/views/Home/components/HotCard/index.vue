@@ -40,43 +40,41 @@
       },
       {
         id: 2,
-        img: 'https://cdn.pixabay.com/photo/2014/09/13/08/23/gear-443676_1280.jpg',
-        title: t('hot.gearSet'),
-        count: 200,
-        viewCount: 58,
+        img: 'https://cdn.pixabay.com/photo/2020/09/15/08/17/tools-5572998_1280.jpg',
+        title: t('hot.miniPiston'),
+        count: 500,
+        viewCount: 6,
       },
       {
         id: 3,
-        img: 'https://cdn.pixabay.com/photo/2017/07/19/00/02/british-racing-green-2517484_1280.jpg',
-        title: t('hot.miniClassic'),
-        count: 300,
-        viewCount: 46,
-      },
-      {
-        id: 4,
         img: 'https://cdn.pixabay.com/photo/2015/05/25/17/31/mini-cooper-783696_1280.jpg',
         title: t('hot.miniCooperClassic'),
         count: 400,
         viewCount: 10,
       },
       {
+        id: 4,
+        img: 'https://cdn.pixabay.com/photo/2017/07/19/00/02/british-racing-green-2517484_1280.jpg',
+        title: t('hot.miniClassic'),
+        count: 300,
+        viewCount: 46,
+      },
+      {
         id: 5,
-        img: 'https://cdn.pixabay.com/photo/2020/09/15/08/17/tools-5572998_1280.jpg',
-        title: t('hot.miniPiston'),
-        count: 500,
-        viewCount: 6,
+        img: 'https://cdn.pixabay.com/photo/2014/09/13/08/23/gear-443676_1280.jpg',
+        title: t('hot.gearSet'),
+        count: 200,
+        viewCount: 58,
       },
     ]
   })
-  // 由銷售高到低排序
-  const descList = hotList.value.sort((a, b) => b.count - a.count)
 </script>
 
 <template>
   <div class="transition-shadow duration-300 hover:shadow-lg hover:shadow-black/10">
     <v-card>
       <div class="mb-4 text-lg font-bold">{{ t('overview.hotProducts') }}</div>
-      <v-table :data="descList" :columns="propColumns" type="index">
+      <v-table :data="hotList" :columns="propColumns" type="index">
         <template #index-column="{ index }">
           <span>No. {{ index + 1 }}</span>
         </template>
