@@ -17,8 +17,8 @@
 
 <template>
   <aside
-    class="fixed bottom-0 left-0 top-0 z-10 bg-gray-700 text-slate-200/50 lg:w-60"
-    :class="props.show ? 'w-60' : ''"
+    class="fixed bottom-0 left-0 top-0 z-10 bg-gray-700 text-slate-200/50 transition-all duration-300 lg:w-60"
+    :class="props.show ? 'w-60' : 'w-0'"
   >
     <ul class="absolute bottom-0 top-[50px] w-full overflow-y-auto">
       <li v-for="menu in menus" :key="menu.name" @click="emits('click')">
@@ -26,7 +26,8 @@
           v-if="menu.meta && !menu.meta.hidden"
           :to="`/${menu.path}`"
           active-class="bg-gray-600 shadow-sm text-white"
-          class="inline-block w-full px-4 py-3 hover:bg-gray-600"
+          class="inline-block w-full px-4 py-3 transition-transform duration-300 hover:bg-gray-600 lg:translate-x-0"
+          :class="props.show ? 'translate-x-0' : '-translate-x-full'"
         >
           <v-icon :name="menu.meta && menu.meta.icon" scale="1" />
           {{ t(String(menu.meta.title)) }}
