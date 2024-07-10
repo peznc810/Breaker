@@ -21,7 +21,7 @@
       <li v-for="menu in menus" :key="menu.name" @click="emits('click')">
         <RouterLink
           v-if="menu.meta && !menu.meta.hidden"
-          :to="menu.path"
+          :to="`/${menu.path}`"
           active-class="bg-gray-600 shadow-sm text-white"
           class="inline-block w-full px-4 py-3 hover:bg-gray-600"
         >

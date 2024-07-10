@@ -4,6 +4,9 @@
   import Chart from './Chart.vue'
   import { t } from '@/locales/index'
   import type { ListItem } from '@/@types/view/home'
+  import { useChartStore } from '@/stores/chart'
+
+  const store = useChartStore()
 
   const transActive = ref(1)
   const totalOrdersActive = ref(1)
@@ -17,12 +20,18 @@
     ]
   })
 
-  const handleActive = (index: number, option: number) => {
+  const handleChartData = (type: 'trans' | 'orders' | 'views' | 'members') => {
+    store.chartData(type)
+  }
+
+  const handleActive = (index: number, option: number, item: any) => {
     if (index === 0) {
       transActive.value = option
     } else {
       totalOrdersActive.value = option
     }
+
+    handleChartData(item.type)
   }
 </script>
 
@@ -40,13 +49,13 @@
           <v-button-group class="ml-6">
             <v-button
               :class="transActive === 1 && 'bg-blue-400 text-white'"
-              @click="handleActive(index, 1)"
+              @click="handleActive(index, 1, item)"
               size="mini"
               >{{ $t('overview.transactionTotal') }}</v-button
             >
             <v-button
               :class="transActive === 2 && 'bg-blue-400 text-white'"
-              @click="handleActive(index, 2)"
+              @click="handleActive(index, 2, item)"
               size="mini"
               >{{ $t('overview.totalSales') }}</v-button
             >
@@ -57,19 +66,19 @@
             <v-button
               class="text-nowrap"
               :class="totalOrdersActive === 1 && 'isActive__btn'"
-              @click="handleActive(index, 1)"
+              @click="handleActive(index, 1, item)"
               size="mini"
               >{{ $t('overview.totalCompletedOrders') }}</v-button
             >
             <v-button
               class="text-nowrap"
               :class="totalOrdersActive === 2 && 'isActive__btn'"
-              @click="handleActive(index, 2)"
+              @click="handleActive(index, 2, item)"
               size="mini"
               >{{ $t('overview.totalOrder') }}</v-button
             >
           </v-button-group>
-          <RouterLink to="/orderManagement" class="ml-2">
+          <RouterLink to="/orderManagement" class="ml-2" title="前往訂單頁面">
             <v-button icon="ri-share-box-line" size="mini" />
           </RouterLink>
         </div>

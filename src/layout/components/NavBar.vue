@@ -147,12 +147,14 @@
             </div>
             <!-- User Config -->
             <div class="relative">
-              <button type="button" ref="userBtn" @click="toggleMenu('user')">
+              <!-- 暫不開發 -->
+              <!-- <button type="button" ref="userBtn" @click="toggleMenu('user')">
                 <span>{{ t('hello') }}，{{ store.user?.username || '' }}</span>
                 <v-icon name="hi-chevron-down" scale="0.8" />
-              </button>
+              </button> -->
+              <span>{{ t('hello') }}，{{ store.user?.username || '' }}</span>
               <!-- 下拉選單 -->
-              <Transition name="slide-fade">
+              <!-- <Transition name="slide-fade">
                 <ul
                   v-show="showUserMenu"
                   class="absolute left-0 top-9 min-w-24 border border-b-0 bg-white text-sm shadow-lg"
@@ -165,7 +167,7 @@
                     >
                   </li>
                 </ul>
-              </Transition>
+              </Transition> -->
             </div>
           </div>
           <!-- 手機版選單 -->

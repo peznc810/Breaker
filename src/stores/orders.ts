@@ -6,6 +6,7 @@ export const useOrdersStore = defineStore('orders', () => {
   // state
   const orders = ref<any[]>([])
   const products = ref<any[]>([])
+  const order = ref<any | null>(null)
 
   // getters
   const getOrders = async () => {
@@ -38,5 +39,9 @@ export const useOrdersStore = defineStore('orders', () => {
 
   // actions
 
-  return { orders, products, getOrders, getProducts }
+  const setOrder = (item: any) => {
+    order.value = item
+  }
+
+  return { order,orders, products, getOrders, getProducts, setOrder }
 })
