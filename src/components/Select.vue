@@ -7,7 +7,7 @@
    *  @param icon?:string
    */
   const props = defineProps<SelectList>()
-  const emit = defineEmits(['input'])
+  const emit = defineEmits(['input', 'click'])
 
   // Data
   const isClick = ref(false) // 顯示下拉選單
@@ -34,11 +34,12 @@
   }
 
   // 控制選擇
-  const handleOption = (item: SelectItem) => {
-    if (item.value) {
+  const handleOption = (item?: SelectItem) => {
+    if (item && item.value) {
       sortValue.value = item.value
+      emit('input', sortValue.value)
     }
-    emit('input', sortValue.value)
+    emit('click')
     isClick.value = false // 關閉下拉選單
   }
 

@@ -7,7 +7,6 @@
     const title = route.meta.title
     const segments = route.fullPath.split('/')
     const path = '/' + segments[1]
-    console.log(path)
     return { title, path }
   })
   const hasParams = computed(() => !!Object.keys(route.params).length)

@@ -30,7 +30,6 @@
   onMounted(async () => {
     await store.getProducts()
     orderInfo.value = store.order
-    console.log(orderInfo.value)
   })
 </script>
 

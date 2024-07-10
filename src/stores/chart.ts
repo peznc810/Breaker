@@ -24,7 +24,7 @@ export const useChartStore = defineStore('chart', () => {
     return labels
   }
 
-  const chartData = (type: 'trans' | 'orders' | 'views' | 'members') => {
+  const chartData = (type?: 'trans' | 'orders' | 'views' | 'members') => {
     const data = []
     const labels = getTimeLabel()
 
@@ -32,19 +32,26 @@ export const useChartStore = defineStore('chart', () => {
       data.push(Math.ceil(Math.random() * 10000))
     }
 
-    switch (type) {
-      case 'trans':
-        transChart.value = data
-        break
-      case 'orders':
-        ordersChart.value = data
-        break
-      case 'views':
-        viewsChart.value = data
-        break
-      case 'members':
-        membersChart.value = data
-        break
+    if (type) {
+      switch (type) {
+        case 'trans':
+          transChart.value = data
+          break
+        case 'orders':
+          ordersChart.value = data
+          break
+        case 'views':
+          viewsChart.value = data
+          break
+        case 'members':
+          membersChart.value = data
+          break
+      }
+    } else {
+      transChart.value = data
+      ordersChart.value = data
+      viewsChart.value = data
+      membersChart.value = data
     }
   }
 
@@ -59,5 +66,13 @@ export const useChartStore = defineStore('chart', () => {
     return data
   }
 
-  return { getTimeLabel, chartData, fakeData, transChart, ordersChart, viewsChart, membersChart }
+  return {
+    getTimeLabel,
+    chartData,
+    fakeData,
+    transChart,
+    ordersChart,
+    viewsChart,
+    membersChart,
+  }
 })
