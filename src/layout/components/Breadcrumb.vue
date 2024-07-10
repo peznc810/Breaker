@@ -3,7 +3,13 @@
   import { computed } from 'vue'
 
   const route = useRoute()
-  const routeName = computed(() => route.meta.title)
+  const routeName = computed(() => {
+    const title = route.meta.title
+    const segments = route.fullPath.split('/')
+    const path = '/' + segments[1]
+    console.log(path)
+    return { title, path }
+  })
   const hasParams = computed(() => !!Object.keys(route.params).length)
   const params = computed(() => Object.keys(route.params)[0])
 </script>
@@ -15,7 +21,9 @@
       class="breadcrumb absolute left-0 right-0 border-b bg-white px-4 py-3 shadow-sm"
     >
       <div :key="route.path">
-        <span>{{ routeName }}</span>
+        <RouterLink :to="routeName.path" class="hover:text-blue-400">
+          <span>{{ routeName.title }}</span>
+        </RouterLink>
         <v-icon v-if="hasParams" name="bi-chevron-right" />
         <span v-if="hasParams">{{ route.params[params] }}</span>
       </div>

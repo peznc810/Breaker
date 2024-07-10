@@ -1,6 +1,7 @@
 <script lang="ts" setup>
   import { onMounted, ref } from 'vue'
   import { useOrdersStore } from '@/stores/orders'
+  import { thousandsSeparator } from '@/utils/mixin'
 
   const store = useOrdersStore()
 
@@ -95,7 +96,7 @@
                 <p class="font-bold">{{ item.title }}</p>
                 <p>
                   {{ Math.ceil(item.quantity) }} x NT$ {{ Math.ceil(item.productPrice) }} = NT$
-                  {{ Math.ceil(item.quantity * item.productPrice) }}
+                  {{ thousandsSeparator(Math.ceil(item.quantity * item.productPrice)) }}
                 </p>
               </div>
             </div>

@@ -67,14 +67,14 @@
           </div>
           <div class="space-x-6">
             <v-select :data="sortList" />
-            <v-button
+            <!-- <v-button
               icon="fc-combo-chart"
               class="transition-colors duration-200 hover:text-blue-500"
               :loading="isLoading"
               @click="handleClick"
             >
               {{ t('moreData') /** 更多數據 */ }}
-            </v-button>
+            </v-button> -->
           </div>
         </div>
         <!-- Chart Card -->

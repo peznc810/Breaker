@@ -17,7 +17,7 @@
     <v-card
       v-for="(item, index) in cardList"
       :key="index"
-      class="hover:cursor-pointer hover:shadow-lg hover:shadow-black/10"
+      class="hover:shadow-lg hover:shadow-black/10"
     >
       <div class="flex h-full flex-col items-center justify-center gap-5">
         <v-icon :name="item.icon" scale="1.3" class="text-blue-400" />

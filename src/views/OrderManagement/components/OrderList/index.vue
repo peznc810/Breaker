@@ -261,7 +261,7 @@
           <div class="mb-2 border-b">
             <span>訂單號碼：</span>
             <RouterLink
-              :to="`/orders/${item.orderNumber}`"
+              :to="`/orderManagement/${item.orderNumber}`"
               class="text-blue-400"
               @click="handleOrderInfo(item)"
             >
