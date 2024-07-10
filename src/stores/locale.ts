@@ -1,10 +1,14 @@
-import { defineStore } from 'pinia'
+import { defineStore,  } from 'pinia'
+// import { useI18n } from 'vue-i18n'
 import { ref } from 'vue'
 
 export const useLocaleStore = defineStore('locale', () => {
-  const locale = ref('zh')
-  function changeLocale(value: string) {
+  const locale = ref(localStorage.getItem('locale') || 'zh')
+
+  const setLocale = (value: 'zh' | 'en'): void => {
+    localStorage.setItem('locale', value)
     locale.value = value
   }
-  return { locale, changeLocale }
+
+  return { locale, setLocale }
 })

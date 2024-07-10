@@ -71,7 +71,7 @@
     <Transition name="slide-fade">
       <ul
         v-show="isClick"
-        class="absolute left-0 top-10 text-nowrap rounded-md bg-white text-sm shadow-lg"
+        class="absolute right-0 top-10 text-nowrap rounded-md bg-white text-sm shadow-lg"
       >
         <!-- 保留客製化 -->
         <slot name="menu">

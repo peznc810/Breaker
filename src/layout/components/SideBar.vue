@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { RouterLink, useRouter } from 'vue-router'
   import { t } from '@/locales/index'
+  import { computed } from 'vue'
 
   const router = useRouter()
 
@@ -9,7 +10,9 @@
   })
   const emits = defineEmits(['click'])
 
-  const menus = router.options.routes[0].children
+  const menus = computed(() => {
+    return router.options.routes[0].children
+  })
 </script>
 
 <template>
@@ -26,7 +29,7 @@
           class="inline-block w-full px-4 py-3 hover:bg-gray-600"
         >
           <v-icon :name="menu.meta && menu.meta.icon" scale="1" />
-          {{ menu.meta && menu.meta.title }}
+          {{ t(String(menu.meta.title)) }}
         </RouterLink>
       </li>
     </ul>
