@@ -61,4 +61,5 @@ export default {
   productDetail: 'Product Details',
   orderTotal: 'Order Total',
   frontPlatform: 'Front shopping website',
+  emptyData: 'No data',
 }

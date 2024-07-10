@@ -226,6 +226,10 @@
       class="hidden w-full min-w-[720px] md:block"
       :default-sort="{ prop: 'date', order: 'descending' }"
     >
+      <template #empty>
+        <v-icon name="bi-inbox" scale="3" />
+        <p>{{ t('emptyData') }}</p>
+      </template>
       <el-table-column type="selection" width="55" />
       <el-table-column
         v-for="column in columnProps"

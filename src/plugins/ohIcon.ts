@@ -16,6 +16,7 @@ import {
   MdLoginRound,
   IoSearch,
   BiChevronRight,
+  BiInbox,
 } from 'oh-vue-icons/icons'
 
 export const ohIcon = [
@@ -36,4 +37,5 @@ export const ohIcon = [
   MdLoginRound, // 登入
   IoSearch, //搜尋
   BiChevronRight, // 右箭頭
+  BiInbox, //開著的箱子
 ]

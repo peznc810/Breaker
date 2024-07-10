@@ -61,4 +61,5 @@ export default {
   productDetail: '商品詳情',
   orderTotal: '訂單合計',
   frontPlatform: '前台購物網站',
+  emptyData: '暫無數據',
 }
