@@ -30,7 +30,6 @@
   onMounted(async () => {
     await store.getProducts()
     orderInfo.value = store.order
-    console.log(orderInfo.value)
   })
 </script>
 
@@ -89,7 +88,7 @@
         <div class="text-sm">
           <div class="mb-4 space-y-3 border-b py-4">
             <div v-for="item in orderInfo.products" :key="item.productId" class="flex gap-5">
-              <div class="h-32 w-32 overflow-hidden">
+              <div class="h-20 w-20 overflow-hidden">
                 <img class="h-full w-full object-contain" :src="item.img" :alt="item.title" />
               </div>
               <div>
@@ -103,7 +102,7 @@
           </div>
           <div class="flex justify-between md:text-lg">
             <span class="font-bold">訂單合計</span>
-            <p>NT$ {{ orderInfo.total }}</p>
+            <p class="font-bold">NT$ {{ orderInfo.total }}</p>
           </div>
         </div>
       </v-card>

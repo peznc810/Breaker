@@ -10,6 +10,7 @@
 
   const transActive = ref(1)
   const totalOrdersActive = ref(1)
+  const isLoading = ref(false)
   // 數據
   const chartList = computed<ListItem[]>(() => {
     return [
@@ -20,18 +21,24 @@
     ]
   })
 
-  const handleChartData = (type: 'trans' | 'orders' | 'views' | 'members') => {
-    store.chartData(type)
-  }
-
-  const handleActive = (index: number, option: number, item: any) => {
+  const handleActive = (index: number, option: number, item: ListItem) => {
+    if (isLoading.value) return
     if (index === 0) {
       transActive.value = option
     } else {
       totalOrdersActive.value = option
     }
 
-    handleChartData(item.type)
+    handleClick(item.type)
+  }
+
+  const handleClick = (type: 'trans' | 'orders' | 'views' | 'members') => {
+    isLoading.value = true
+    store.chartData(type)
+
+    setTimeout(() => {
+      isLoading.value = false
+    }, 1000)
   }
 </script>
 

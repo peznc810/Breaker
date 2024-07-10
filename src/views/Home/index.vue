@@ -5,10 +5,12 @@
   import ToDoCard from './components/ToDoCard/index.vue'
   import HotCard from './components/HotCard/index.vue'
   import { useUserStore } from '@/stores/user'
+  import { useChartStore } from '@/stores/chart'
 
   const store = useUserStore()
+  const chartStore = useChartStore()
 
-  const isLoading = ref(false)
+  // const isLoading = ref(false)
 
   const now = computed(() => {
     const hour = new Date().getHours()
@@ -40,17 +42,21 @@
   // 熱門商品
 
   // Methods
-  const handleClick = () => {
-    isLoading.value = true
+  // const handleClick = () => {
+  //   isLoading.value = true
 
-    setTimeout(() => {
-      isLoading.value = false
-    }, 1000)
+  //   setTimeout(() => {
+  //     isLoading.value = false
+  //   }, 1000)
+  // }
+  const handleClick = () => {
+    chartStore.chartData()
   }
 </script>
 
 <template>
   <div class="p-6">
+    <el-button @click="handleClick">測試看看</el-button>
     <div class="flex flex-col gap-5">
       <div class="mb-4 text-2xl font-bold">{{ greet }}, {{ store.user?.username || '' }}</div>
       <!-- 待辦事項 -->
@@ -66,7 +72,7 @@
             </div>
           </div>
           <div class="space-x-6">
-            <v-select :data="sortList" />
+            <v-select :data="sortList" @click="handleClick" />
             <!-- <v-button
               icon="fc-combo-chart"
               class="transition-colors duration-200 hover:text-blue-500"

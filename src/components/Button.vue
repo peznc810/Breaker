@@ -27,7 +27,7 @@
   >
     <!-- Loading的樣式 -->
     <v-icon
-      v-if="props.icon && isLoading"
+      v-if="isLoading"
       name="ri-loader-2-fill"
       :scale="iconSize"
       animation="spin"
