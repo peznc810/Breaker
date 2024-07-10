@@ -14,3 +14,7 @@
 span {
   line-height: 2rem;
 }
+
+.el-input__inner.el-input__inner {
+  font-size: initial;
+}
