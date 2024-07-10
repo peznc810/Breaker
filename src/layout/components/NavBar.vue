@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-  import { RouterLink } from 'vue-router'
-  import { ref, reactive, onMounted, onUnmounted, computed, watchEffect } from 'vue'
+  import { RouterLink, useRoute } from 'vue-router'
+  import { ref, reactive, onMounted, onUnmounted, computed, watchEffect, watch } from 'vue'
   import { useI18n } from 'vue-i18n'
   import { t } from '@/locales/index'
   import { useUserStore } from '@/stores/user'
@@ -11,6 +11,7 @@
   const { locale } = useI18n()
   const store = useUserStore()
   const localeStore = useLocaleStore()
+  const route = useRoute()
 
   const props = defineProps({
     show: Boolean,
@@ -18,6 +19,15 @@
   const emit = defineEmits(['click'])
 
   // data
+  const showUserMenu = ref(false)
+  const showLangMenu = ref(false)
+  const showMobileMenu = ref(false)
+  const userBtn = ref<HTMLElement | null>(null)
+  const langBtn = ref<HTMLElement | null>(null)
+  const mobileBtn = ref<HTMLElement | null>(null)
+  const routeName = computed(() => {
+    return route.name
+  })
   // const userMenu: MenuItem[] = reactive([
   //   { name: t('user.profile'), path: '/users/profile' },
   //   { name: t('user.changePassword'), path: '/users/changePassword' },
@@ -28,22 +38,20 @@
     { name: 'English', value: 'en' },
   ])
   const username = computed(() => store.user?.username || '')
-  const mobileMenu: MobileMenu[] = reactive([
-    { name: t('language'), showChildren: false, children: langMenu },
-    {
-      name: `${t('hello')}，${username.value}`,
-      showChildren: false,
-      children: [],
-    },
-  ])
+  // const mobileMenu: MobileMenu[] = reactive([
+  //   { name: t('language'), showChildren: false, children: langMenu },
+  //   {
+  //     name: `${t('hello')}，${username.value}`,
+  //     showChildren: false,
+  //     children: [],
+  //   },
+  // ])
+  const mobileLangMenu = reactive({
+    showChildren: false,
+    children: langMenu,
+  })
 
-  const showUserMenu = ref(false)
-  const showLangMenu = ref(false)
-  const showMobileMenu = ref(false)
-  const userBtn = ref<HTMLElement | null>(null)
-  const langBtn = ref<HTMLElement | null>(null)
-
-  mobileMenu[1].name = `${t('hello')}，${username.value}`
+  // mobileMenu[1].name = `${t('hello')}，${username.value}`
 
   /* methods */
   // 切換語言
@@ -52,11 +60,12 @@
     localeStore.setLocale(value)
     if (showMobileMenu.value) {
       showMobileMenu.value = false
+      mobileLangMenu.showChildren = false
     }
     // window.location.reload()
   }
   // 選單開關
-  const toggleMenu = (menu: Menu | MobileMenu): void => {
+  const toggleMenu = (menu?: Menu | MobileMenu): void => {
     if (menu === 'user') {
       showUserMenu.value = !showUserMenu.value
       showLangMenu.value = false
@@ -65,25 +74,34 @@
       showUserMenu.value = false
     } else if (menu === 'mobile') {
       showMobileMenu.value = !showMobileMenu.value
-      mobileMenu.forEach((item) => {
-        item.showChildren = false
-      })
+      // mobileLangMenu.showChildren = false
+      // mobileMenu.forEach((item) => {
+      //   item.showChildren = false
+      // })
     } else {
       // 手機版選單開關
-      menu.showChildren = !menu.showChildren
+      mobileLangMenu.showChildren = !mobileLangMenu.showChildren
     }
   }
   // 點擊選單外部則關閉選單
   const handleWindowClick = (e: Event) => {
     const target = e.target as HTMLElement
-
     const isUserMenuOutside = showUserMenu.value && userBtn.value && !userBtn.value.contains(target)
     const isLangMenuOutside = showLangMenu.value && langBtn.value && !langBtn.value.contains(target)
+    const isMobileMenuOutside = computed(() => {
+      // 如果選單沒開，並且點擊的是選單外部，則不關閉選單
+      if (!showMobileMenu.value) {
+        return false
+      }
+      return showMobileMenu.value && mobileBtn.value && !mobileBtn.value.contains(target)
+    })
 
     if (isUserMenuOutside) {
       showUserMenu.value = false
     } else if (isLangMenuOutside) {
       showLangMenu.value = false
+    } else if (isMobileMenuOutside.value) {
+      showMobileMenu.value = false
     }
   }
 
@@ -95,8 +113,11 @@
   onUnmounted(() => {
     document.addEventListener('click', handleWindowClick)
   })
-  watchEffect(() => {
-    mobileMenu[1].name = `${t('hello')}，${username.value}`
+
+  watch(routeName, () => {
+    showUserMenu.value = false
+    showLangMenu.value = false
+    showMobileMenu.value = false
   })
 </script>
 
@@ -111,12 +132,12 @@
         :class="props.show ? 'w-60' : 'w-0'"
       >
         <div class="flex-shrink-0">
-          <span class="lg:block" :class="props.show ? 'block' : 'hidden'">IF SHOP</span>
+          <span class="lg:block" :class="props.show ? 'block' : 'hidden'">R SHOP</span>
         </div>
       </div>
       <!-- hamburger -->
       <div
-        class="grid place-content-center bg-primary px-2 text-white hover:cursor-pointer lg:hidden"
+        class="grid place-content-center bg-primary px-3 text-white hover:cursor-pointer lg:hidden"
         :class="props.show && 'border-l-2 border-slate-900/20'"
         @click="emit('click')"
       >
@@ -176,7 +197,7 @@
           </div>
           <!-- 手機版選單 -->
           <!-- TODO: 新增dropdown components -->
-          <div class="text-white md:hidden">
+          <div class="text-white md:hidden" ref="mobileBtn">
             <button class="h-[50px] px-2 shadow-none" @click="toggleMenu('mobile')">
               <v-icon name="hi-dots-vertical" />
             </button>
@@ -186,43 +207,24 @@
               class="absolute top-[50px] w-full bg-white text-slate-700 shadow-md transition-all duration-300"
               :class="props.show ? 'left-60' : 'left-0'"
             >
-              <li v-for="menu in mobileMenu" :key="menu.name">
-                <!-- 外層 -->
-                <template v-if="menu.path">
-                  <RouterLink :to="menu.path" class="mobile-outside-menu">{{
-                    menu.name
-                  }}</RouterLink>
-                </template>
-                <template v-else>
-                  <div
-                    class="mobile-outside-menu"
-                    @click="toggleMenu(menu)"
-                    :class="menu.children?.length && 'hover:cursor-pointer'"
-                  >
-                    <span>{{ menu.name }}</span>
-                    <v-icon v-if="menu.children?.length" name="hi-chevron-down" scale="0.8" />
-                  </div>
-                </template>
+              <!-- 外層 -->
+              <li>
+                <div class="mobile-outside-menu" @click="toggleMenu()">
+                  <span>{{ t('language') }}</span>
+                  <v-icon name="hi-chevron-down" scale="0.8" />
+                </div>
                 <!-- 內層 -->
-                <ul v-show="menu.showChildren" class="text-white">
-                  <li v-for="item in menu.children" :key="item.name">
-                    <template v-if="item.path">
-                      <RouterLink class="mobile-inside-menu inline-block" :to="item.path">
-                        {{ item.name }}
-                      </RouterLink>
-                    </template>
-                    <template v-else>
-                      <button
-                        type="button"
-                        class="mobile-inside-menu"
-                        @click="item.value && toggleLang(item.value)"
-                      >
-                        {{ item.name }}
-                      </button>
-                    </template>
-                  </li>
-                </ul>
+                <div
+                  v-show="mobileLangMenu.showChildren"
+                  class="mobile-inside-menu"
+                  v-for="item in mobileLangMenu.children"
+                  :key="item.name"
+                  @click="toggleLang(item.value as 'zh' | 'en')"
+                >
+                  <span>{{ item.name }}</span>
+                </div>
               </li>
+              <li class="px-4 py-3 text-sm">{{ t('hello') }}， {{ username }}</li>
             </ul>
           </div>
         </div>
@@ -248,10 +250,10 @@
   }
 
   .mobile-outside-menu {
-    @apply flex w-full items-center justify-between px-4 py-1 text-sm;
+    @apply flex w-full items-center justify-between px-4 py-1 text-sm hover:cursor-pointer;
   }
 
   .mobile-inside-menu {
-    @apply w-full bg-slate-900/70 px-4 py-3 text-left text-sm font-normal transition-colors duration-150 hover:cursor-pointer hover:bg-slate-900/80;
+    @apply w-full bg-slate-900/70 px-4 py-3 text-left text-sm font-normal text-white transition-colors duration-150 hover:cursor-pointer hover:bg-slate-900/80;
   }
 </style>
