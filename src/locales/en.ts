@@ -53,4 +53,12 @@ export default {
   orders: {
     searchPlaceholder: 'Please enter order number / order name / email / total',
   },
+  orderData: 'Order Data',
+  orderInfo: 'Order Information',
+  orderSource: 'Order Source',
+  orderNameData: 'Order Name Information',
+  orderEmail: 'Order Email',
+  productDetail: 'Product Details',
+  orderTotal: 'Order Total',
+  frontPlatform: 'Front shopping website',
 }

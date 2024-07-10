@@ -260,7 +260,7 @@
       <template v-if="!loading">
         <v-card v-for="item in tableData" :key="item.orderNumber" class="mb-5 text-sm md:hidden">
           <div class="mb-2 border-b">
-            <span>訂單號碼：</span>
+            <span>{{ t('orderNumber') }}：</span>
             <RouterLink
               :to="`/orderManagement/${item.orderNumber}`"
               class="text-blue-400"
@@ -276,7 +276,7 @@
             <span>{{ item.orderName }} ({{ item.email }})</span>
           </div>
           <div>
-            <span>合計：</span>
+            <span>{{ t('total') }}：</span>
             {{ 'NT$ ' + thousandsSeparator(item.total) }}
           </div>
         </v-card>

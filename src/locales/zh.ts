@@ -48,9 +48,17 @@ export default {
   total: '總金額',
   date: '日期',
   email: '電子郵箱',
-  phone: '電話',
+  phone: '電話號碼',
   product: '商品',
   orders: {
     searchPlaceholder: '請輸入訂單號碼 / 訂購人 / 信箱 / 合計',
-  }
+  },
+  orderData: '訂單資料',
+  orderInfo: '訂單資訊',
+  orderSource: '訂單來源',
+  orderNameData: '訂購人資訊',
+  orderEmail: '訂單Email',
+  productDetail: '商品詳情',
+  orderTotal: '訂單合計',
+  frontPlatform: '前台購物網站',
 }
