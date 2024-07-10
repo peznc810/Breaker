@@ -49,11 +49,11 @@
     class="w-full space-y-3 rounded-lg bg-white p-6 shadow-sm transition-shadow duration-300"
   >
     <!-- Header -->
-    <div class="flex items-center justify-between">
+    <div class="flex flex-wrap items-center justify-between gap-4">
       <div class="text-sm font-normal">{{ item.title }}</div>
       <div class="btn">
         <div v-show="index === 0" class="flex flex-nowrap">
-          <v-button-group class="ml-6">
+          <v-button-group>
             <v-button
               :class="transActive === 1 && 'bg-blue-400 text-white'"
               @click="handleActive(index, 1, item)"
@@ -69,7 +69,7 @@
           </v-button-group>
         </div>
         <div v-show="index === 1" class="flex flex-nowrap">
-          <v-button-group class="ml-6">
+          <v-button-group>
             <v-button
               class="text-nowrap"
               :class="totalOrdersActive === 1 && 'isActive__btn'"

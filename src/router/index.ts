@@ -3,7 +3,6 @@ import type { RouteRecordRaw, RouteLocationNormalized, NavigationGuard } from 'v
 import Layout from '@/layout/index.vue'
 // import User from '@/views/User/index.vue'
 import Login from '@/views/Login/index.vue'
-import { t } from '@/locales/index'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -16,7 +15,7 @@ const routes: RouteRecordRaw[] = [
         name: 'dashboard',
         component: () => import('@/views/Home/index.vue'),
         meta: {
-          title: t('dashboard'),
+          title :'dashboard',
           icon: 'bi-grid-1x2',
         },
       },
@@ -26,7 +25,7 @@ const routes: RouteRecordRaw[] = [
         name: 'orderManagement',
         redirect: '/orderManagement/orders',
         meta: {
-          title: t('orderManagement'),
+          title:'orderManagement',
           icon: 'hi-clipboard-list',
         },
         children: [
@@ -47,7 +46,7 @@ const routes: RouteRecordRaw[] = [
         name: 'productManagement',
         component: () => import('../views/ProductManagement/index.vue'),
         meta: {
-          title: t('productManagement'),
+          title:'productManagement',
           icon: 'la-shopping-bag-solid',
           hidden: true,
         },
@@ -57,7 +56,7 @@ const routes: RouteRecordRaw[] = [
         name: 'report',
         component: () => import('../views/ReportView/index.vue'),
         meta: {
-          title: t('report'),
+          title:'report',
           icon: 'la-user-solid',
           hidden: true,
         },

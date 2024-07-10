@@ -56,7 +56,6 @@
 
 <template>
   <div class="p-6">
-    <el-button @click="handleClick">測試看看</el-button>
     <div class="flex flex-col gap-5">
       <div class="mb-4 text-2xl font-bold">{{ greet }}, {{ store.user?.username || '' }}</div>
       <!-- 待辦事項 -->

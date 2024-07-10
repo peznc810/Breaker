@@ -4,11 +4,13 @@
   import { useI18n } from 'vue-i18n'
   import { t } from '@/locales/index'
   import { useUserStore } from '@/stores/user'
+  import { useLocaleStore } from '@/stores/locale'
   import type { Menu, MenuItem, MobileMenu } from '@/@types/components/navBar'
 
   // declare
   const { locale } = useI18n()
   const store = useUserStore()
+  const localeStore = useLocaleStore()
 
   const props = defineProps({
     show: Boolean,
@@ -16,11 +18,11 @@
   const emit = defineEmits(['click'])
 
   // data
-  const userMenu: MenuItem[] = reactive([
-    { name: t('user.profile'), path: '/profile' },
-    { name: t('user.changePassword'), path: '/changePassword' },
-    { name: t('user.logout'), path: '/logout' },
-  ])
+  // const userMenu: MenuItem[] = reactive([
+  //   { name: t('user.profile'), path: '/users/profile' },
+  //   { name: t('user.changePassword'), path: '/users/changePassword' },
+  //   { name: t('user.logout'), path: '/logout' },
+  // ])
   const langMenu: MenuItem[] = reactive([
     { name: '繁體中文', value: 'zh' },
     { name: 'English', value: 'en' },
@@ -45,11 +47,13 @@
 
   /* methods */
   // 切換語言
-  const toggleLang = (value: string) => {
+  const toggleLang = (value: 'zh' | 'en') => {
     locale.value = value
+    localeStore.setLocale(value)
     if (showMobileMenu.value) {
       showMobileMenu.value = false
     }
+    // window.location.reload()
   }
   // 選單開關
   const toggleMenu = (menu: Menu | MobileMenu): void => {
@@ -136,7 +140,7 @@
                 >
                   <li v-for="item in langMenu" :key="item.name">
                     <span
-                      class="inline-block w-full border-b px-4 py-2 hover:cursor-pointer hover:bg-gray-500 hover:text-white"
+                      class="inline-block w-full border-b px-2 py-1 hover:cursor-pointer hover:bg-gray-500 hover:text-white"
                       @click="item.value && toggleLang(item.value)"
                     >
                       {{ item.name }}
