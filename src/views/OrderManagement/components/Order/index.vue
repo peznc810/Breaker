@@ -2,6 +2,7 @@
   import { onMounted, ref } from 'vue'
   import { useOrdersStore } from '@/stores/orders'
   import { thousandsSeparator } from '@/utils/mixin'
+  import { t } from '@/locales'
 
   const store = useOrdersStore()
 
@@ -39,20 +40,20 @@
     <div class="">
       <v-card class="">
         <div class="border-b pb-2 text-lg text-blue-400">
-          <span>訂單資料</span>
+          <span>{{ t('orderInfo') }}</span>
         </div>
         <div class="space-y-3 py-4 text-sm">
           <div>
-            <span class="font-bold">訂單號碼</span>
+            <span class="font-bold">{{ t('orderNumber') }}</span>
             <p>{{ orderInfo.orderNumber }}</p>
           </div>
           <div>
-            <span class="font-bold">訂單日期</span>
+            <span class="font-bold">{{ t('orderDate') }}</span>
             <p>{{ orderInfo.date }}</p>
           </div>
           <div>
-            <span class="font-bold">訂單來源</span>
-            <p>前台購物網站</p>
+            <span class="font-bold">{{ t('orderSource') }}</span>
+            <p>{{ t('frontPlatform') }}</p>
           </div>
         </div>
       </v-card>
@@ -61,19 +62,19 @@
     <div class="">
       <v-card>
         <div class="border-b pb-2 text-lg text-blue-400">
-          <span>訂購人資訊</span>
+          <span>{{ t('orderNameData') }}</span>
         </div>
         <div class="space-y-3 py-4 text-sm">
           <div>
-            <span class="font-bold">訂購人</span>
+            <span class="font-bold">{{ t('orderName') }}</span>
             <p>{{ orderInfo.orderName }}</p>
           </div>
           <div>
-            <span class="font-bold">訂單Email</span>
+            <span class="font-bold">{{ t('orderEmail') }}</span>
             <p>{{ orderInfo.email }}</p>
           </div>
           <div>
-            <span class="font-bold">電話號碼</span>
+            <span class="font-bold">{{ t('phone') }}</span>
             <p>{{ orderInfo.phone }}</p>
           </div>
         </div>
@@ -83,7 +84,7 @@
     <div class="md:col-span-2">
       <v-card>
         <div class="border-b pb-2 text-lg text-blue-400">
-          <span>商品詳情</span>
+          <span>{{ t('productDetail') }}</span>
         </div>
         <div class="text-sm">
           <div class="mb-4 space-y-3 border-b py-4">
@@ -101,7 +102,7 @@
             </div>
           </div>
           <div class="flex justify-between md:text-lg">
-            <span class="font-bold">訂單合計</span>
+            <span class="font-bold">{{ t('orderTotal') }}</span>
             <p class="font-bold">NT$ {{ orderInfo.total }}</p>
           </div>
         </div>
