@@ -1,1 +1,0 @@
-import{_ as r,b as e,e as n,p as _}from"./index-CBVPCt_m.js";const s={};function o(c,t){return e(),n("div",null,"product list")}const a=r(s,[["render",o]]),l={__name:"index",setup(c){return(t,p)=>(e(),_(a))}};export{l as default};
