@@ -41,5 +41,16 @@ export default {
     miniClassic: 'Austin Mini 經典款',
     miniCooperClassic: 'Mini Cooper 經典款',
     multiToolSet: '多功能工具組',
+  },
+  orderNumber: '訂單號碼',
+  orderDate: '訂單日期',
+  orderName: '訂購人',
+  total: '總金額',
+  date: '日期',
+  email: '電子郵箱',
+  phone: '電話',
+  product: '商品',
+  orders: {
+    searchPlaceholder: '請輸入訂單號碼 / 訂購人 / 信箱 / 合計',
   }
 }

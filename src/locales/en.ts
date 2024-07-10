@@ -42,4 +42,15 @@ export default {
     miniCooperClassic: 'Mini Cooper Classic',
     multiToolSet: 'Multi-tool Set',
   },
+  orderNumber: 'Order Number',
+  orderDate: 'Order Date',
+  orderName: 'Order Name',
+  total: 'Total Amount',
+  date: 'Date',
+  email: 'Email',
+  phone: 'Phone',
+  product: 'Product',
+  orders: {
+    searchPlaceholder: 'Please enter order number / order name / email / total',
+  },
 }

@@ -6,6 +6,7 @@
   import moment from 'moment'
   import { RouterLink } from 'vue-router'
   import { thousandsSeparator } from '@/utils/mixin'
+  import { t } from '@/locales'
 
   const store = useOrdersStore()
   const userStore = useUserStore()
@@ -32,10 +33,10 @@
   // 表格欄位
   const columnProps = computed<Column[]>(() => {
     return [
-      { label: '訂單號碼', prop: 'orderNumber' },
-      { label: '訂單日期', prop: 'date', sortable: true },
-      { label: '訂購人', prop: 'orderName' },
-      { label: '合計', prop: 'total', sortable: true },
+      { label: t('orderNumber'), prop: 'orderNumber' },
+      { label: t('orderDate'), prop: 'date', sortable: true },
+      { label: t('orderName'), prop: 'orderName' },
+      { label: t('total'), prop: 'total', sortable: true },
     ]
   })
 
@@ -197,7 +198,7 @@
     <div class="mb-5 flex flex-wrap items-center gap-5">
       <el-input
         v-model="search"
-        placeholder="請輸入訂單號碼 / 訂購人 / 信箱 / 合計"
+        :placeholder="t('orders.searchPlaceholder')"
         class="w-full md:w-1/2"
         size="large"
         @keydown.enter="onSearch('input')"
