@@ -1,1 +1,0 @@
-import{_ as r,b as e,e as n,q as _}from"./index-Ca8-ARgJ.js";const s={};function o(c,t){return e(),n("div",null,"product list")}const a=r(s,[["render",o]]),p={__name:"index",setup(c){return(t,u)=>(e(),_(a))}};export{p as default};
