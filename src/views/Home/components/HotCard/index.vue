@@ -87,14 +87,14 @@
       <v-card
         v-for="item in hotList"
         :key="item.id"
-        class="mb-5 flex items-center gap-10 md:hidden"
+        class="mb-5 flex-wrap items-center gap-10 overflow-auto md:hidden"
       >
         <div class="mb-2 h-full">
-          <span>No. {{ item.id }}</span>
+          <span class="font-bold">No. {{ item.id }}</span>
         </div>
         <div class="mb-2">
-          <div class="h-40 w-40 overflow-hidden">
-            <img class="h-full w-full object-contain" :src="item.img" alt="" />
+          <div class="h-40 w-full max-w-60 overflow-hidden">
+            <img class="h-full w-full object-cover" :src="item.img" alt="" />
           </div>
         </div>
         <div class="mb-2 space-y-2">
