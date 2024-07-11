@@ -18,4 +18,4 @@
 ## 感謝
 ### 特別感謝以下平台
 
-- [Fake Store API]([https://platform-url](https://fakestoreapi.com/)) - fakeStoreApi 是一個免費的在線 REST API，當你需要為你的電子商務或購物網站提供偽真實數據，而不需要運行任何伺服器端代碼時，可以使用它。它非常適合教學目的、示範代碼、測試等。
+- [Fake Store API](https://fakestoreapi.com/) - fakeStoreApi 是一個免費的在線 REST API，當你需要為你的電子商務或購物網站提供偽真實數據，而不需要運行任何伺服器端代碼時，可以使用它。它非常適合教學目的、示範代碼、測試等。
