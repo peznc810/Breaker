@@ -1,45 +1,21 @@
-# dashboard-template
+# Shop Dashboard
+## 💡 Overview
+以SHOPLINE的後台生態作為開發依據，模擬網站管理後台。系統採用響應式網頁設計（RWD），確保在各種裝置上都能自動調整排版，提供一致的使用體驗，同時搭配動態切換效果，提升用戶的互動性，並整合了 i18n 多語系功能，支持用戶在英文和中文兩種語言之間隨意切換，並且記錄上次所選擇的語系，以便下次進入網頁可延用所選語系。
+## 👀 Live demo https://dashboard-rubys-projects-f5896fe6.vercel.app/
+![SHOP](https://github.com/peznc810/Dashboard/assets/150581210/4612f8a4-5308-4d45-a182-cf06b7538480)
+<img width="1414" alt="Screenshot 2024-07-11 at 15 47 28" src="https://github.com/peznc810/Dashboard/assets/150581210/8495e5fd-4d2e-44bc-b0c4-5a83c6bea497">
+<img width="1416" alt="Screenshot 2024-07-11 at 15 50 03" src="https://github.com/peznc810/Dashboard/assets/150581210/bbea9745-488c-4994-a3a7-1f5a192f72a4">
 
-This template should help get you started developing with Vue 3 in Vite.
+## 🧩 Built with
+### Fornt-end
+- [Vue3](https://nextjs.org/) - 基於Vue的前端框架，用於建構現代化的用戶界面。
+- [Vue-Router](https://react.dev/) - 為Vue應用提供路由功能的官方插件。
+- [Vue-i18n](https://react.dev/) - Vue應用的國際化插件，用於多語言支持。
+- [Pinia](https://react-icons.github.io/react-icons/) - Vue的狀態管理庫，簡單且強大。
+- [Tailwind](https://getbootstrap.com/) -  一個可高度自定義的CSS框架，提供豐富的UI元件庫。
+- [ChartJS](https://sass-lang.com/) - 一個簡單而靈活的JavaScript圖表庫，用於在網頁中繪製各種類型的圖表。
 
-## Recommended IDE Setup
+## 感謝
+### 特別感謝以下平台
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- [Fake Store API](https://fakestoreapi.com/) - fakeStoreApi 是一個免費的在線 REST API，當你需要為你的電子商務或購物網站提供偽真實數據，而不需要運行任何伺服器端代碼時，可以使用它。它非常適合教學目的、示範代碼、測試等。

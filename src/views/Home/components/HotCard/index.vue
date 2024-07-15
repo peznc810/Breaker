@@ -8,7 +8,7 @@
       {
         label: '',
         prop: 'img',
-        width: '100',
+        width: '160',
       },
       {
         label: '',
@@ -74,16 +74,35 @@
   <div class="transition-shadow duration-300 hover:shadow-lg hover:shadow-black/10">
     <v-card>
       <div class="mb-4 text-lg font-bold">{{ t('overview.hotProducts') }}</div>
-      <v-table :data="hotList" :columns="propColumns" type="index">
+      <v-table :data="hotList" :columns="propColumns" type="index" class="hidden md:block">
         <template #index-column="{ index }">
           <span>No. {{ index + 1 }}</span>
         </template>
         <template #img-column="{ row }">
-          <div class="h-10 w-10 overflow-hidden">
+          <div class="h-20 w-20 overflow-hidden">
             <img class="h-full w-full object-cover" :src="row.img" alt="" />
           </div>
         </template>
       </v-table>
+      <v-card
+        v-for="item in hotList"
+        :key="item.id"
+        class="mb-5 flex-wrap items-center gap-10 overflow-auto md:hidden"
+      >
+        <div class="mb-2 h-full">
+          <span class="font-bold">No. {{ item.id }}</span>
+        </div>
+        <div class="mb-2">
+          <div class="h-40 w-full max-w-60 overflow-hidden">
+            <img class="h-full w-full object-cover" :src="item.img" alt="" />
+          </div>
+        </div>
+        <div class="mb-2 space-y-2">
+          <p class="font-bold">{{ item.title }}</p>
+          <p class="text-sm">{{ t('sales') }}：{{ item.count }}</p>
+          <p class="text-sm">{{ t('viewCount') }}：{{ item.viewCount }}</p>
+        </div>
+      </v-card>
     </v-card>
   </div>
 </template>

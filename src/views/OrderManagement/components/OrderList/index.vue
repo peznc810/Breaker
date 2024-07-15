@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import { useOrdersStore } from '@/stores/orders'
   import { useUserStore } from '@/stores/user'
-  import { computed, onMounted, ref } from 'vue'
+  import { computed, onMounted, ref, watch } from 'vue'
   import type { Column } from '@/@types/components/table'
   import moment from 'moment'
   import { RouterLink } from 'vue-router'
@@ -18,6 +18,8 @@
   const date = ref('')
   const pageSize = ref(5)
   const currentPage = ref(1)
+  const total = ref(0)
+  const noDataShow = ref(false)
 
   // 初始化數據
   const init = async () => {
@@ -132,10 +134,12 @@
   const handlePageChange = (val: number) => {
     currentPage.value = val
     tableData.value = currentTableData.value
+    noDataShow.value = false
   }
   const handleMobilePageChange = (val: number) => {
     loading.value = true
     currentPage.value = val
+    noDataShow.value = false
     // 為了切換頁面時有過渡效果
     tableData.value = []
     setTimeout(() => {
@@ -147,16 +151,19 @@
     const searchVal = search.value.toLowerCase()
     const searchAll = !searchVal || searchVal === ''
 
-    if (searchAll) return currentTableData.value
-
-    return originData.value.filter((item) => {
-      return (
-        item.orderNumber.toLowerCase().includes(searchVal) ||
-        item.orderName.toLowerCase().includes(searchVal) ||
-        item.email.toLowerCase().includes(searchVal) ||
-        item.total.toString().includes(searchVal)
-      )
-    })
+    if (searchAll) {
+      return currentTableData.value
+    } else {
+      const data = originData.value.filter((item) => {
+        return (
+          item.orderNumber.toLowerCase().includes(searchVal) ||
+          item.orderName.toLowerCase().includes(searchVal) ||
+          item.email.toLowerCase().includes(searchVal) ||
+          item.total.toString().includes(searchVal)
+        )
+      })
+      return data
+    }
   })
   const filterDataDate = computed(() => {
     const searchVal = moment(date.value).format('YYYY-MM-DD')
@@ -169,12 +176,25 @@
     })
   })
   const onSearch = (type: 'input' | 'date') => {
-    if (type === 'input') {
-      tableData.value = filterData.value
-    }
-    if (type === 'date') {
-      tableData.value = filterDataDate.value
-    }
+    loading.value = true
+    noDataShow.value = true
+
+    const searchValAll = !search.value || search.value === ''
+
+    setTimeout(() => {
+      if (type === 'input') {
+        tableData.value = filterData.value
+        loading.value = false
+
+        total.value = searchValAll ? originData.value.length : filterData.value.length
+      }
+      if (type === 'date') {
+        tableData.value = filterDataDate.value
+        loading.value = false
+
+        total.value = searchValAll ? originData.value.length : filterDataDate.value.length
+      }
+    }, 1000)
   }
   // 日期篩選
   const disabledDate = (time: any) => {
@@ -189,6 +209,7 @@
   onMounted(async () => {
     await init()
     tableData.value = currentTableData.value
+    total.value = originData.value.length
   })
 </script>
 
@@ -199,7 +220,7 @@
       <el-input
         v-model="search"
         :placeholder="t('orders.searchPlaceholder')"
-        class="w-full md:w-1/2"
+        class="w-full"
         size="large"
         @keydown.enter="onSearch('input')"
       >
@@ -226,6 +247,12 @@
       class="hidden w-full min-w-[720px] md:block"
       :default-sort="{ prop: 'date', order: 'descending' }"
     >
+      <template #empty>
+        <div class="my-2 flex flex-col items-center">
+          <v-icon name="bi-inbox" scale="3" />
+          <span>{{ t('emptyData') }}</span>
+        </div>
+      </template>
       <el-table-column type="selection" width="55" />
       <el-table-column
         v-for="column in columnProps"
@@ -282,6 +309,10 @@
         </v-card>
       </template>
     </TransitionGroup>
+    <div v-show="!loading && !tableData.length && noDataShow" class="text-center md:hidden">
+      <v-icon name="bi-inbox" scale="3" />
+      <p class="text-sm">{{ t('emptyData') }}</p>
+    </div>
 
     <!-- 分頁 -->
     <div class="flex justify-center">
@@ -298,7 +329,7 @@
         v-model="currentPage"
         class="mobile-pagination mt-4"
         layout="prev, pager, next"
-        :total="originData.length"
+        :total="total"
         :page-size="pageSize"
         :hide-on-single-page="true"
         @update:current-page="handleMobilePageChange"
@@ -316,6 +347,10 @@
   .list-leave-to {
     opacity: 0;
     transform: translateX(-30px);
+  }
+
+  .el-input.el-input--large {
+    max-width: 500px;
   }
 
   .desktop-pagination {

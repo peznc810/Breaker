@@ -20,7 +20,7 @@
   <Transition name="bread" mode="out-in">
     <div
       v-if="route.fullPath !== '/dashboard'"
-      class="breadcrumb absolute left-0 right-0 border-b bg-white px-4 py-3 shadow-sm"
+      class="breadcrumb absolute left-0 right-0 z-50 border-b bg-white px-4 py-3 shadow-sm"
     >
       <div :key="route.path">
         <RouterLink :to="routeName" class="hover:text-blue-400">
